@@ -1,0 +1,49 @@
+Parâmetro	Valor	Descrição
+modulo	1.5	módulo [mm]
+Zs	12	dentes do sol
+Zp	18	dentes de cada planeta
+n_planetas	3	número de planetas (usado nas posições)
+alpha	20	ângulo de pressão [graus]
+backlash	0.3	folga de dente: arco no primitivo retirado de cada dente [mm]
+clearance	0.25	folga de fundo (x módulo)
+head_anel	-0.4	alívio do adendo do anel (x módulo)
+espessura	8	espessura (altura) das engrenagens [mm]
+furo_sol	5	diâmetro do furo do sol [mm]
+furo_planeta	4.3	diâmetro do furo dos planetas [mm]
+parede_anel	4	parede do anel além do primitivo [mm]
+porta_d	81	diâmetro dos discos do porta-satélites [mm]
+porta_e	4	espessura dos discos do porta-satélites [mm]
+porta_furo	5	furo central do disco inferior [mm]
+porta_furo_sup	6.5	furo central do disco superior: passagem do eixo Ø6 da manivela [mm]
+pino_d	4	diâmetro dos pinos dos planetas [mm]
+pino_h	8.4	altura dos pinos acima do disco inferior [mm]
+folga_axial	0.4	folga entre topo das engrenagens e disco superior [mm]
+man_ajuste	0.2	furo_sol - diâmetro da ponta: 0,2 = ajuste deslizante [mm]
+man_ponta_l	6.2	comprimento da ponta que entra no sol [mm]
+man_eixo_d	6	diâmetro do eixo acima da ponta [mm]
+man_eixo_l	10.2	comprimento do eixo, do ombro ao centro do braço [mm]
+man_braco	50	comprimento do braço, do eixo ao centro do punho [mm]
+man_braco_d	6	diâmetro do braço [mm]
+man_punho_d	8	diâmetro do punho [mm]
+man_punho_h	22	altura do punho acima do braço [mm]
+man_flat	0.8	profundidade do chanfro em D na ponta e da nervura no sol (0 = redondo) [mm]
+
+— derivados —
+Zr	48	dentes do anel
+i_trans	5	relação de transmissão (anel fixo)
+a_centros	22.5	distância entre centros sol-planeta [mm]
+d_s	18	diâmetro primitivo do sol [mm]
+d_p	27	diâmetro primitivo do planeta [mm]
+d_r	72	diâmetro primitivo do anel [mm]
+da_s	21	diâmetro externo do sol [mm]
+da_p	30	diâmetro externo do planeta [mm]
+da_r	70.2	diâmetro interno (adendo) do anel [mm]
+D_anel	80	diâmetro externo do anel [mm]
+passo_ang	120	espaçamento angular dos planetas [graus]
+check_mont	0	condição de montagem: deve ser 0
+z_sup	8.4	cota z do disco superior [mm]
+man_ponta_d	4.8	diâmetro da ponta da manivela [mm]
+man_z_braco	16.4	cota do eixo do braço, medida da ponta [mm]
+man_z_montada	1.8	cota z da ponta com a manivela montada [mm]
+man_folga_tampa	2.8	folga entre braço e disco superior (deve ser > 0) [mm]
+man_folga_disco	0.5	folga do eixo no disco superior (deve ser > 0) [mm]
