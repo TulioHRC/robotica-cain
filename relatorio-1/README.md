@@ -2,8 +2,6 @@
 
 ### Modelagem no CAD
 
-O sistema projetado pode ser visualizado na Figura 1.
-
 <table align="center" style="border: none; border-collapse: collapse;">
   <tr style="border: none;">
     <td align="center" style="border: none; padding: 10px;">
@@ -19,7 +17,7 @@ O sistema projetado pode ser visualizado na Figura 1.
 
 ---
 
-### Componentes Fabricados
+### Componentes fabricados
 
 <table align="center" style="border: none; border-collapse: collapse;">
   <tr style="border: none;">
@@ -46,7 +44,7 @@ O sistema projetado pode ser visualizado na Figura 1.
 
 ---
 
-### Conjunto Montado e Finalizado
+### Conjunto montado e finalizado
 
 <div align="center">
   <img src="./images/completo.jpeg" alt="Conjunto montado e finalizado" width="500"/><br/>
