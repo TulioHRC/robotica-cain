@@ -1,5 +1,5 @@
 G04 Layer: TopSolderMaskLayer*
-G04 EasyEDA Pro v3.2.149, 2026-09-29 10:16:42*
+G04 EasyEDA Pro v3.2.149, 2026-09-29 10:39:25*
 G04 Gerber Generator version 0.3*
 G04 Scale: 100 percent, Rotated: No, Reflected: No*
 G04 Dimensions in millimeters*
@@ -16,7 +16,7 @@ G04 Copper Areas: 0*
 %ADD12RoundRect,0.1016X-1.0X0.79651X1.0X0.79651*%
 %ADD13RoundRect,0.1016X-0.40324X0.432X0.40324X0.432*%
 %ADD14RoundRect,0.1016X-0.266X0.536X0.266X0.536*%
-%ADD15RoundRect,0.1054X-1.5X2.74999X1.5X2.74999*%
+%ADD15RoundRect,0.1033X-1.5X2.74999X1.5X2.74999*%
 %ADD16RoundRect,0.10003X-1.5X2.74999X1.5X2.74999*%
 G75*
 
