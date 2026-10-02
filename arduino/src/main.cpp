@@ -3,8 +3,8 @@
 // Comecem com 1 s ligado e 1 s desligado. Depois reduzam os dois.
 const int PIN_LED = 8;
 const int PIN_ADC = A0;
-unsigned long t_on_ms = 2;
-unsigned long t_off_ms = 2;
+unsigned long t_on_ms = 1;
+unsigned long t_off_ms = 1;
 // mudar p 200, 100
 
 void setup()
