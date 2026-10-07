@@ -8,32 +8,32 @@
         {
             "name": "PlatformIO",
             "includePath": [
-                "/root/a/src",
-                "/root/.platformio/packages/framework-arduino-avr/cores/arduino",
-                "/root/.platformio/packages/framework-arduino-avr/variants/mega",
-                "/root/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
-                "/root/.platformio/packages/framework-arduino-avr/libraries/HID/src",
-                "/root/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
-                "/root/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
-                "/root/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                "C:/Users/solob/robotica-cain/arduino/src",
+                "C:/Users/solob/.platformio/packages/framework-arduino-avr/cores/arduino",
+                "C:/Users/solob/.platformio/packages/framework-arduino-avr/variants/mega",
+                "C:/Users/solob/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                "C:/Users/solob/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                "C:/Users/solob/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                "C:/Users/solob/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                "C:/Users/solob/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                 ""
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                    "/root/a/src",
-                    "/root/.platformio/packages/framework-arduino-avr/cores/arduino",
-                    "/root/.platformio/packages/framework-arduino-avr/variants/mega",
-                    "/root/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
-                    "/root/.platformio/packages/framework-arduino-avr/libraries/HID/src",
-                    "/root/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
-                    "/root/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
-                    "/root/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                    "C:/Users/solob/robotica-cain/arduino/src",
+                    "C:/Users/solob/.platformio/packages/framework-arduino-avr/cores/arduino",
+                    "C:/Users/solob/.platformio/packages/framework-arduino-avr/variants/mega",
+                    "C:/Users/solob/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                    "C:/Users/solob/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                    "C:/Users/solob/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                    "C:/Users/solob/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                    "C:/Users/solob/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                     ""
                 ]
             },
             "defines": [
-                "PLATFORMIO=60119",
+                "PLATFORMIO=60200",
                 "ARDUINO_AVR_MEGA2560",
                 "F_CPU=16000000L",
                 "ARDUINO_ARCH_AVR",
@@ -43,7 +43,7 @@
             ],
             "cStandard": "gnu11",
             "cppStandard": "gnu++11",
-            "compilerPath": "/root/.platformio/packages/toolchain-atmelavr/bin/avr-gcc",
+            "compilerPath": "C:/Users/solob/.platformio/packages/toolchain-atmelavr/bin/avr-gcc.exe",
             "compilerArgs": [
                 "-mmcu=atmega2560",
                 ""
