@@ -2,79 +2,66 @@
 #include <Encoder.h>
 #include <Servo.h>
 
-// Instancia o encoder informando os pinos A e B
-Encoder myEnc(2, 3);
+#define INPUT_PULLUP
+#define ENCODER_USE_INTERRUPTS6+++++++
 
-const int N = 5;
-int buf[N] = {0, 0, 0, 0, 0};
-int idx = 0;
+Encoder rodaEncoder(2, 3);
 
 Servo myservo;
+const int pinoServo = 9;
 
-// Média móvel
-double sma(int newValue) {
-  int sum = 0;
+const float K = 0.51;
 
-  buf[idx] = newValue;
-  idx = (idx + 1) % N;
-
-  for (int i = 0; i < N; i++) {
-    sum += buf[i];
-  }
-
-  return (double)sum / (double)N;
-}
-
-// Filtro Passa baixa
-double lowPass(int newValue, double alpha) {
-  static double filteredValue = 0;
-  filteredValue = alpha * newValue + (1 - alpha) * filteredValue;
-  return filteredValue;
-}
-
-unsigned long lastTime;
-unsigned long currentTime;
+unsigned long lastTime = 0;
 long lastTicks = 0;
+const unsigned long intervalo_dt = 50;
+
+const int N_FILTRO = 20; 
+float buf[N_FILTRO] = {0};
+int idx = 0;
+
+float mediaMovel(float novaVelocidade) {
+  float soma = 0;
+  buf[idx] = novaVelocidade;
+  idx = (idx + 1) % N_FILTRO;
+
+  for (int i = 0; i < N_FILTRO; i++) {
+    soma += buf[i];
+  }
+  return soma / (float)N_FILTRO;
+}
 
 void setup() {
   Serial.begin(115200);
-   
-  myservo.attach(9);
+  
+  myservo.attach(pinoServo);
+  myservo.writeMicroseconds(1500);
 
   lastTime = millis();
+  lastTicks = rodaEncoder.read();
 }
 
 void loop() {
-  myservo.writeMicroseconds(500);
-
-  long t = myEnc.read();
-
-  currentTime = millis();
-
-  long deltaTime = currentTime - lastTime;
-  long deltaTicks = t - lastTicks;
+  myservo.writeMicroseconds(1700); 
   
-  float speed = 0.0;
-  if (deltaTime > 0) {
-    speed = ((float)deltaTicks / (float)deltaTime) * 0.54 * 1000; // mm por s
+  unsigned long currentTime = millis();
+  unsigned long deltaTime = currentTime - lastTime;
+
+  if (deltaTime >= intervalo_dt) {
+    long t = rodaEncoder.read();
+    long deltaTicks = t - lastTicks;
+
+    float deltaS = deltaTicks * K; 
+    
+    float speedBruta = (deltaS / (float)deltaTime) * 1000.0; 
+
+    float speedFiltrada = mediaMovel(speedBruta);
+
+    Serial.print(speedBruta);
+    Serial.print(",");
+    Serial.println(speedFiltrada);
+
+    lastTime = currentTime;
+    lastTicks = t;
   }
-
-  Serial.print("ticks: ");
-  Serial.print(t);
-
-  Serial.print(" | Last ticks: ");
-  Serial.println(lastTicks);
-
-  Serial.print("Velocidade: ");
-  Serial.print(speed);
-  Serial.println(" mm/s");
-
-  lastTime = currentTime;
-  lastTicks = t;
-  
-  delay(500);
-
-  // Testes de filtro (se quiser usar os filtros, lembre de passar myEnc.read())
-  // Serial.println(myEnc.read());
-  // Serial.println(lowPass(myEnc.read(), 0.5));
 }
