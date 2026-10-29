@@ -1,171 +1,144 @@
-//  Comandos:
-//    n            -> busca do neutro: 1400 a 1600 us em passos de 10 us
-//    c            -> curva pulso x velocidade: 1000 a 2000 us, nos dois sentidos
-//    f 1600       -> degrau em malha aberta com o pulso dado, comparando os 2 filtros
-//    p 1550       -> pulso fixo (para testar à mão)
-//    neutro 1490  -> grava o neutro medido (use depois do 'n')
-//    s            -> para (manda o neutro)
+// =============================================================
+//  Roda HeRo: SG90 continuo + encoder + PID de velocidade
+//  Arduino Mega: servo no D9, encoder A/B no D3 e D2 (trocados)
+//
+//  Comandos (use com registrar.py, final de linha "Nova linha"):
+//    v 100     -> degrau de velocidade em mm/s (sintonia), por 6 s e para sozinho.
+//    v 100 8   -> idem, por 8 s. Negativo = outro sentido.
+//    1         -> ensaio 1: cinco patamares crescentes
+//    2         -> ensaio 2: inversao de sentido (+v e depois -v)
+//    s         -> para antes da hora (todos os ensaios terminam sozinhos)
+//    kp 1.0    -> muda kp   (idem ki, kd)
+//    neutro 1495 -> muda o neutro (us)
+//    b 30      -> muda a meia-largura da banda morta (us)
+//    ?         -> mostra a configuracao atual
+//
+//  Cada ensaio sai entre "INICIO <nome>" e "FIM", em CSV:
+//    t_ms,ticks,s_mm,setpoint,v_bruta,v_filtrada,u_us,pulso_us
+// =============================================================
 #include <Arduino.h>
 #include <Encoder.h>
 #include <Servo.h>
 
+// ---------- Hardware ----------
+// A e B trocados (3, 2): sem isso a contagem vem com sinal oposto ao do pulso.
 Encoder enc(3, 2);
 Servo servo;
 const int PIN_SERVO = 9;
 
-const float K_MM_POR_TICK = 0.513;  // k = pi*D/N
-int NEUTRO_US = 1500;
+// ---------- Valores medidos pela equipe ----------
+const float K_MM_POR_TICK = 0.513; // k = pi * D / N  (D = 40 mm, N = 245)
+int NEUTRO_US      = 1495;         // da busca do neutro (comando n do malha_aberta)
+int BANDA_MORTA_US = 30;           // meia-largura da banda morta (parada de 1470 a 1520)
 
-// ---------- Amostragem e filtros ----------
-const unsigned long PERIODO_MS = 50; // dt nominal (o código usa o dt REAL)
-const int   JANELA_MEDIA = 5;        // média móvel: 5 amostras
-const float ALPHA = 0.3;             // passa-baixa: v = a*bruta + (1-a)*v
+// ---------- PID (comecam em P puro; sintonize um ganho por vez) ----------
+float kp = 1.0, ki = 0.0, kd = 0.0;
+const float U_MAX = 250.0;           // correcao limitada a +-250 us em torno do neutro
+const float ALPHA = 0.3;             // passa-baixa escolhido na comparacao de filtros
+const unsigned long PERIODO_MS = 50; // periodo do controle (o codigo usa o dt REAL)
 
-// ---------- Varreduras ----------
-const int NEU_MIN = 1400, NEU_MAX = 1600, NEU_PASSO = 10;
-const int CUR_MIN = 1000, CUR_MAX = 2000, CUR_PASSO = 20;
-const unsigned long ACOMODA_MS = 800;  // descarta o transitório
-const unsigned long MEDE_MS = 1200;    // janela de medida em regime
-
-// ---------- Degrau dos filtros ----------
-const unsigned long DEG_PRE = 1000, DEG_DUR = 4000, DEG_POS = 2000;
+// ---------- Ensaios ----------
+const float PAT_VEL[5] = {90, 105, 120, 135, 150}; // mm/s, dentro da curva medida
+const unsigned long PAT_DUR = 3000;                // ms por patamar
+const float INV_VEL = 100;                         // mm/s
+const unsigned long INV_DUR = 4000;                // ms em cada sentido
+const unsigned long PRE_MS = 1000;                 // repouso antes do primeiro degrau
+const unsigned long POS_MS = 2000;                 // repouso no fim
+const unsigned long MANUAL_DUR_MS = 6000;          // duracao padrao do comando v (apos o repouso)
 
 // ---------- Estado ----------
-enum Modo { PARADO, VARRE, DEGRAU, FIXO };
+enum Modo { PARADO, MANUAL, PATAMARES, INVERSAO };
 Modo modo = PARADO;
 
-int vMax, vPasso, vPulso;
-unsigned long vT0, vTmed;
-long vTicks0;
-bool vMedindo;
+unsigned long tAntUs = 0, tInicio = 0;
+long  ticks0 = 0, ticksAnt = 0;
+float vFilt = 0, vFiltAnt = 0;
+float sp = 0, spManual = 0;
+unsigned long manualDur = MANUAL_DUR_MS;
+float integral = 0;
 
-int degPulso;
-unsigned long degT0, tAntUs;
-long ticksAnt, ticks0;
-float bufMedia[JANELA_MEDIA];
-int idxMedia = 0, nMedia = 0;
-float vPB = 0;
-
+// -------------------------------------------------------------
 void imprimirConfig() {
-  Serial.print(F("# k_mm_tick=")); Serial.print(K_MM_POR_TICK, 4);
-  Serial.print(F(" neutro_us=")); Serial.print(NEUTRO_US);
+  Serial.print(F("# neutro_us=")); Serial.print(NEUTRO_US);
+  Serial.print(F(" banda_us=")); Serial.print(BANDA_MORTA_US);
+  Serial.print(F(" k_mm_tick=")); Serial.print(K_MM_POR_TICK, 4);
   Serial.print(F(" periodo_ms=")); Serial.print(PERIODO_MS);
-  Serial.print(F(" janela_media=")); Serial.print(JANELA_MEDIA);
-  Serial.print(F(" alpha=")); Serial.println(ALPHA, 3);
+  Serial.print(F(" alpha=")); Serial.print(ALPHA, 3);
+  Serial.print(F(" kp=")); Serial.print(kp, 3);
+  Serial.print(F(" ki=")); Serial.print(ki, 3);
+  Serial.print(F(" kd=")); Serial.println(kd, 3);
 }
 
-void fim() {
-  modo = PARADO;
+void parar() {
   servo.writeMicroseconds(NEUTRO_US);
-  Serial.println(F("FIM"));
+  if (modo != PARADO) {
+    modo = PARADO;
+    Serial.println(F("FIM"));
+  }
+  sp = 0;
+  integral = 0;
 }
 
-void iniciarVarredura(const char *nome, int mn, int mx, int passo) {
-  modo = VARRE;
-  vMax = mx; vPasso = passo; vPulso = mn;
-  vT0 = millis(); vMedindo = false;
-  servo.writeMicroseconds(vPulso);
+void iniciar(Modo m, const __FlashStringHelper *nome) {
+  if (modo != PARADO) parar();             // fecha o ensaio anterior (imprime FIM)
+  modo = m;
+  tInicio = millis();
+  ticks0 = ticksAnt = enc.read();
+  vFilt = vFiltAnt = 0;
+  integral = 0;
+  sp = 0;
+  tAntUs = micros();
   Serial.print(F("INICIO ")); Serial.println(nome);
   imprimirConfig();
-  Serial.println(F("pulso_us,ticks,dt_s,v_mm_s"));
+  Serial.println(F("t_ms,ticks,s_mm,setpoint,v_bruta,v_filtrada,u_us,pulso_us"));
 }
 
-void iniciarDegrau(int pulso) {
-  modo = DEGRAU;
-  degPulso = constrain(pulso, 1000, 2000);
-  degT0 = millis();
-  tAntUs = micros();
-  ticks0 = ticksAnt = enc.read();
-  idxMedia = 0; nMedia = 0; vPB = 0;
-  servo.writeMicroseconds(NEUTRO_US);
-  Serial.println(F("INICIO filtros"));
-  imprimirConfig();
-  Serial.print(F("# pulso_degrau_us=")); Serial.println(degPulso);
-  Serial.println(F("t_ms,ticks,s_mm,dt_ms,v_bruta,v_media,v_passabaixa,pulso_us"));
-}
-
-// Mantém cada pulso, descarta o transitório e mede a velocidade em regime
-void passoVarredura() {
-  unsigned long agora = millis();
-  unsigned long tp = agora - vT0;
-
-  if (!vMedindo && tp >= ACOMODA_MS) {
-    vTicks0 = enc.read();
-    vTmed = agora;
-    vMedindo = true;
-  }
-  if (vMedindo && tp >= ACOMODA_MS + MEDE_MS) {
-    long dTicks = enc.read() - vTicks0;
-    float dt = (agora - vTmed) / 1000.0;
-    float v = dTicks * K_MM_POR_TICK / dt;
-
-    Serial.print(vPulso); Serial.print(',');
-    Serial.print(dTicks); Serial.print(',');
-    Serial.print(dt, 3);  Serial.print(',');
-    Serial.println(v, 2);
-
-    vPulso += vPasso;
-    if (vPulso > vMax) { fim(); return; }
-    servo.writeMicroseconds(vPulso);
-    vT0 = agora;
-    vMedindo = false;
+float setpointDoEnsaio(unsigned long t) {
+  switch (modo) {
+    case MANUAL:
+      return (t < PRE_MS) ? 0 : spManual;
+    case PATAMARES: {
+      if (t < PRE_MS) return 0;
+      unsigned long k = (t - PRE_MS) / PAT_DUR;
+      return (k < 5) ? PAT_VEL[k] : 0;
+    }
+    case INVERSAO:
+      if (t < PRE_MS) return 0;
+      if (t < PRE_MS + INV_DUR) return INV_VEL;
+      if (t < PRE_MS + 2 * INV_DUR) return -INV_VEL;
+      return 0;
+    default:
+      return 0;
   }
 }
 
-// Degrau em malha aberta: bruta, média móvel e passa-baixa no mesmo registro
-void passoDegrau() {
-  unsigned long agoraUs = micros();
-  if (agoraUs - tAntUs < PERIODO_MS * 1000UL) return;
-  float dt = (agoraUs - tAntUs) * 1e-6;
-  tAntUs = agoraUs;
-
-  long ticks = enc.read();
-  long dTicks = ticks - ticksAnt;
-  ticksAnt = ticks;
-
-  float vBruta = dTicks * K_MM_POR_TICK / dt;
-
-  // Filtro 1: média móvel
-  bufMedia[idxMedia] = vBruta;
-  idxMedia = (idxMedia + 1) % JANELA_MEDIA;
-  if (nMedia < JANELA_MEDIA) nMedia++;
-  float soma = 0;
-  for (int i = 0; i < nMedia; i++) soma += bufMedia[i];
-  float vMedia = soma / nMedia;
-
-  // Filtro 2: passa-baixa de 1ª ordem
-  vPB = ALPHA * vBruta + (1 - ALPHA) * vPB;
-
-  unsigned long t = millis() - degT0;
-  int pulso = (t >= DEG_PRE && t < DEG_PRE + DEG_DUR) ? degPulso : NEUTRO_US;
-  servo.writeMicroseconds(pulso);
-
-  long tk = ticks - ticks0;
-  Serial.print(t);                       Serial.print(',');
-  Serial.print(tk);                      Serial.print(',');
-  Serial.print(tk * K_MM_POR_TICK, 2);   Serial.print(',');
-  Serial.print(dt * 1000.0, 2);          Serial.print(',');
-  Serial.print(vBruta, 2);               Serial.print(',');
-  Serial.print(vMedia, 2);               Serial.print(',');
-  Serial.print(vPB, 2);                  Serial.print(',');
-  Serial.println(pulso);
-
-  if (t > DEG_PRE + DEG_DUR + DEG_POS) fim();
+bool ensaioAcabou(unsigned long t) {
+  if (modo == MANUAL)    return t > PRE_MS + manualDur + POS_MS;
+  if (modo == PATAMARES) return t > PRE_MS + 5 * PAT_DUR + POS_MS;
+  if (modo == INVERSAO)  return t > PRE_MS + 2 * INV_DUR + POS_MS;
+  return false;
 }
 
+// -------------------------------------------------------------
 void tratarComando(char *linha) {
   char *cmd = strtok(linha, " ");
   if (!cmd) return;
   char *arg = strtok(NULL, " ");
-  int x = arg ? atoi(arg) : 0;
+  char *arg2 = strtok(NULL, " ");
+  float x = arg ? atof(arg) : 0;
 
-  if      (!strcmp(cmd, "n")) iniciarVarredura("neutro", NEU_MIN, NEU_MAX, NEU_PASSO);
-  else if (!strcmp(cmd, "c")) iniciarVarredura("curva", CUR_MIN, CUR_MAX, CUR_PASSO);
-  else if (!strcmp(cmd, "f")) iniciarDegrau(arg ? x : NEUTRO_US + 100);
-  else if (!strcmp(cmd, "p")) { modo = FIXO; servo.writeMicroseconds(constrain(x, 1000, 2000));
-                                Serial.print(F("# pulso fixo ")); Serial.println(x); }
-  else if (!strcmp(cmd, "neutro")) { NEUTRO_US = x; servo.writeMicroseconds(NEUTRO_US); imprimirConfig(); }
-  else if (!strcmp(cmd, "s")) { modo = PARADO; servo.writeMicroseconds(NEUTRO_US); Serial.println(F("# parado")); }
+  if      (!strcmp(cmd, "1"))  iniciar(PATAMARES, F("patamares"));
+  else if (!strcmp(cmd, "2"))  iniciar(INVERSAO, F("inversao"));
+  else if (!strcmp(cmd, "v"))  { spManual = x;
+                                 manualDur = arg2 ? (unsigned long)(atof(arg2) * 1000) : MANUAL_DUR_MS;
+                                 iniciar(MANUAL, F("manual")); }
+  else if (!strcmp(cmd, "s"))  parar();
+  else if (!strcmp(cmd, "kp")) { kp = x; imprimirConfig(); }
+  else if (!strcmp(cmd, "ki")) { ki = x; integral = 0; imprimirConfig(); }
+  else if (!strcmp(cmd, "kd")) { kd = x; imprimirConfig(); }
+  else if (!strcmp(cmd, "neutro")) { NEUTRO_US = (int)x; if (modo == PARADO) servo.writeMicroseconds(NEUTRO_US); imprimirConfig(); }
+  else if (!strcmp(cmd, "b"))  { BANDA_MORTA_US = (int)x; imprimirConfig(); }
+  else if (!strcmp(cmd, "?"))  imprimirConfig();
   else Serial.println(F("# comando desconhecido"));
 }
 
@@ -182,16 +155,75 @@ void lerSerial() {
   }
 }
 
+// -------------------------------------------------------------
 void setup() {
   Serial.begin(115200);
   servo.attach(PIN_SERVO);
   servo.writeMicroseconds(NEUTRO_US);
-  Serial.println(F("# pronto. Comandos: n, c, f <pulso>, p <pulso>, neutro <us>, s"));
+  Serial.println(F("# pronto. Comandos: v <mm/s> [s], 1, 2, s, kp/ki/kd <x>, neutro <us>, b <us>, ?"));
   imprimirConfig();
 }
 
 void loop() {
   lerSerial();
-  if (modo == VARRE)  passoVarredura();
-  if (modo == DEGRAU) passoDegrau();
+  if (modo == PARADO) return;
+
+  // Controle em periodo fixo, sem delay()
+  unsigned long agoraUs = micros();
+  if (agoraUs - tAntUs < PERIODO_MS * 1000UL) return;
+  float dt = (agoraUs - tAntUs) * 1e-6;   // dt REAL entre leituras
+  tAntUs = agoraUs;
+
+  // Encoder -> distancia -> velocidade
+  long ticks = enc.read();
+  long dTicks = ticks - ticksAnt;
+  ticksAnt = ticks;
+
+  float vBruta = dTicks * K_MM_POR_TICK / dt;
+  vFiltAnt = vFilt;
+  vFilt = ALPHA * vBruta + (1 - ALPHA) * vFilt;
+
+  long tk = ticks - ticks0;
+  float sMm = tk * K_MM_POR_TICK;
+  unsigned long t = millis() - tInicio;
+
+  // Setpoint; zera a integral quando ele muda (para nao carregar o erro antigo)
+  float novoSp = setpointDoEnsaio(t);
+  if (novoSp != sp) { sp = novoSp; integral = 0; }
+
+  float u = 0;
+  if (sp != 0) {
+    float erro = sp - vFilt;
+
+    integral += erro * dt;
+    if (ki > 0) {                            // a integral tem limite
+      float iMax = U_MAX / ki;
+      integral = constrain(integral, -iMax, iMax);
+    }
+
+    float deriv = -(vFilt - vFiltAnt) / dt;  // derivada da MEDIDA filtrada, nao do erro
+
+    // Compensacao que pula a banda morta no sentido certo
+    float ff = (sp > 0) ? BANDA_MORTA_US : -BANDA_MORTA_US;
+
+    u = ff + kp * erro + ki * integral + kd * deriv;
+    u = constrain(u, -U_MAX, U_MAX);         // correcao em +-250 us
+  } else {
+    integral = 0;                            // setpoint zero: neutro, roda parada
+  }
+
+  int pulso = constrain(NEUTRO_US + (int)u, 1000, 2000);
+  servo.writeMicroseconds(pulso);
+
+  // Registro (CSV)
+  Serial.print(t);          Serial.print(',');
+  Serial.print(tk);         Serial.print(',');
+  Serial.print(sMm, 2);     Serial.print(',');
+  Serial.print(sp, 1);      Serial.print(',');
+  Serial.print(vBruta, 2);  Serial.print(',');
+  Serial.print(vFilt, 2);   Serial.print(',');
+  Serial.print(u, 1);       Serial.print(',');
+  Serial.println(pulso);
+
+  if (ensaioAcabou(t)) parar();
 }

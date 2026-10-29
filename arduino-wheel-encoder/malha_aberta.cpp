@@ -9,11 +9,11 @@
 #include <Encoder.h>
 #include <Servo.h>
 
-Encoder enc(2, 3);
+Encoder enc(3, 2);
 Servo servo;
 const int PIN_SERVO = 9;
 
-const float K_MM_POR_TICK = 0.51;  // k = pi*D/N
+const float K_MM_POR_TICK = 0.513;  // k = pi*D/N
 int NEUTRO_US = 1500;
 
 // ---------- Amostragem e filtros ----------
