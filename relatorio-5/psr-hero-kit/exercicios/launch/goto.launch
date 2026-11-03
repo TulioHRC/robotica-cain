@@ -1,0 +1,9 @@
+<launch>
+  <!-- Bridge to the simulator + the goto.py node for hero_0.
+       script: another file inside goto/ -->
+  <arg name="script" default="goto.py"/>
+  <include file="$(find psr_hero)/launch/bridge.launch"/>
+  <node pkg="psr_exercicios" type="$(arg script)" name="goto_0" output="screen">
+    <param name="robot" value="0"/>
+  </node>
+</launch>
