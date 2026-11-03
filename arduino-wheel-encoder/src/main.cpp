@@ -1,7 +1,3 @@
-// =============================================================
-//  Roda HeRo: SG90 continuo + encoder + PID de velocidade
-//  Arduino Mega: servo no D9, encoder A/B no D3 e D2 (trocados)
-//
 //  Comandos (use com registrar.py, final de linha "Nova linha"):
 //    v 100     -> degrau de velocidade em mm/s (sintonia), por 6 s e para sozinho.
 //    v 100 8   -> idem, por 8 s. Negativo = outro sentido.
@@ -12,32 +8,24 @@
 //    neutro 1495 -> muda o neutro (us)
 //    b 30      -> muda a meia-largura da banda morta (us)
 //    ?         -> mostra a configuracao atual
-//
-//  Cada ensaio sai entre "INICIO <nome>" e "FIM", em CSV:
-//    t_ms,ticks,s_mm,setpoint,v_bruta,v_filtrada,u_us,pulso_us
-// =============================================================
 #include <Arduino.h>
 #include <Encoder.h>
 #include <Servo.h>
 
-// ---------- Hardware ----------
-// A e B trocados (3, 2): sem isso a contagem vem com sinal oposto ao do pulso.
+// A e B trocados (3, 2)
 Encoder enc(3, 2);
 Servo servo;
 const int PIN_SERVO = 9;
 
-// ---------- Valores medidos pela equipe ----------
 const float K_MM_POR_TICK = 0.513; // k = pi * D / N  (D = 40 mm, N = 245)
 int NEUTRO_US      = 1495;         // da busca do neutro (comando n do malha_aberta)
 int BANDA_MORTA_US = 30;           // meia-largura da banda morta (parada de 1470 a 1520)
 
-// ---------- PID (comecam em P puro; sintonize um ganho por vez) ----------
-float kp = 1.0, ki = 0.0, kd = 0.0;
+float kp = 5.0, ki = 12.0, kd = 0.1;
 const float U_MAX = 250.0;           // correcao limitada a +-250 us em torno do neutro
 const float ALPHA = 0.3;             // passa-baixa escolhido na comparacao de filtros
 const unsigned long PERIODO_MS = 50; // periodo do controle (o codigo usa o dt REAL)
 
-// ---------- Ensaios ----------
 const float PAT_VEL[5] = {90, 105, 120, 135, 150}; // mm/s, dentro da curva medida
 const unsigned long PAT_DUR = 3000;                // ms por patamar
 const float INV_VEL = 100;                         // mm/s
@@ -46,7 +34,6 @@ const unsigned long PRE_MS = 1000;                 // repouso antes do primeiro 
 const unsigned long POS_MS = 2000;                 // repouso no fim
 const unsigned long MANUAL_DUR_MS = 6000;          // duracao padrao do comando v (apos o repouso)
 
-// ---------- Estado ----------
 enum Modo { PARADO, MANUAL, PATAMARES, INVERSAO };
 Modo modo = PARADO;
 
@@ -57,7 +44,6 @@ float sp = 0, spManual = 0;
 unsigned long manualDur = MANUAL_DUR_MS;
 float integral = 0;
 
-// -------------------------------------------------------------
 void imprimirConfig() {
   Serial.print(F("# neutro_us=")); Serial.print(NEUTRO_US);
   Serial.print(F(" banda_us=")); Serial.print(BANDA_MORTA_US);
@@ -80,7 +66,7 @@ void parar() {
 }
 
 void iniciar(Modo m, const __FlashStringHelper *nome) {
-  if (modo != PARADO) parar();             // fecha o ensaio anterior (imprime FIM)
+  if (modo != PARADO) parar(); 
   modo = m;
   tInicio = millis();
   ticks0 = ticksAnt = enc.read();
@@ -119,7 +105,6 @@ bool ensaioAcabou(unsigned long t) {
   return false;
 }
 
-// -------------------------------------------------------------
 void tratarComando(char *linha) {
   char *cmd = strtok(linha, " ");
   if (!cmd) return;
@@ -155,7 +140,6 @@ void lerSerial() {
   }
 }
 
-// -------------------------------------------------------------
 void setup() {
   Serial.begin(115200);
   servo.attach(PIN_SERVO);
@@ -168,13 +152,11 @@ void loop() {
   lerSerial();
   if (modo == PARADO) return;
 
-  // Controle em periodo fixo, sem delay()
   unsigned long agoraUs = micros();
   if (agoraUs - tAntUs < PERIODO_MS * 1000UL) return;
-  float dt = (agoraUs - tAntUs) * 1e-6;   // dt REAL entre leituras
+  float dt = (agoraUs - tAntUs) * 1e-6;
   tAntUs = agoraUs;
 
-  // Encoder -> distancia -> velocidade
   long ticks = enc.read();
   long dTicks = ticks - ticksAnt;
   ticksAnt = ticks;
@@ -187,7 +169,6 @@ void loop() {
   float sMm = tk * K_MM_POR_TICK;
   unsigned long t = millis() - tInicio;
 
-  // Setpoint; zera a integral quando ele muda (para nao carregar o erro antigo)
   float novoSp = setpointDoEnsaio(t);
   if (novoSp != sp) { sp = novoSp; integral = 0; }
 
@@ -196,26 +177,24 @@ void loop() {
     float erro = sp - vFilt;
 
     integral += erro * dt;
-    if (ki > 0) {                            // a integral tem limite
+    if (ki > 0) {
       float iMax = U_MAX / ki;
       integral = constrain(integral, -iMax, iMax);
     }
 
-    float deriv = -(vFilt - vFiltAnt) / dt;  // derivada da MEDIDA filtrada, nao do erro
+    float deriv = -(vFilt - vFiltAnt) / dt;
 
-    // Compensacao que pula a banda morta no sentido certo
     float ff = (sp > 0) ? BANDA_MORTA_US : -BANDA_MORTA_US;
 
     u = ff + kp * erro + ki * integral + kd * deriv;
-    u = constrain(u, -U_MAX, U_MAX);         // correcao em +-250 us
+    u = constrain(u, -U_MAX, U_MAX);
   } else {
-    integral = 0;                            // setpoint zero: neutro, roda parada
+    integral = 0;
   }
 
   int pulso = constrain(NEUTRO_US + (int)u, 1000, 2000);
   servo.writeMicroseconds(pulso);
 
-  // Registro (CSV)
   Serial.print(t);          Serial.print(',');
   Serial.print(tk);         Serial.print(',');
   Serial.print(sMm, 2);     Serial.print(',');
