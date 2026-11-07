@@ -19,13 +19,6 @@ Desvio de obstáculos, configurações A e B:
 ./run.sh run avoid script:=avoid_b.py
 ```
 
-Desvio de obstáculos sem o viés de vagar, usado na Figura 3 do relatório:
-
-```bash
-./run.sh down
-./run.sh run avoid script:=avoid_sem_vies.py
-```
-
 Navegação até metas, conjuntos A e B:
 
 ```bash
