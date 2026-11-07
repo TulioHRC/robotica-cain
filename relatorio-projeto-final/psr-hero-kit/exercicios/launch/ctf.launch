@@ -1,0 +1,39 @@
+<launch>
+  <!-- Bridge to the simulator + one node per robot.
+       robots: 4 (two per team: hero_0 attacker + hero_1 defender in blue, hero_2 + hero_3 in red) or 2
+       blue / red: script of that team (inside ctf/) or none -->
+  <arg name="robots" default="4"/>
+  <arg name="blue" default="ctf.py"/>
+  <arg name="red" default="ctf.py"/>
+  <include file="$(find psr_hero)/launch/bridge.launch"/>
+
+  <group if="$(eval arg('robots') == 4)">
+    <node unless="$(eval arg('blue') == 'none')" pkg="psr_exercicios" type="$(arg blue)" name="ctf_0" output="screen">
+      <param name="robot" value="0"/><param name="team" value="blue"/><param name="role" value="attacker"/>
+      <rosparam param="opponents">[2, 3]</rosparam>
+    </node>
+    <node unless="$(eval arg('blue') == 'none')" pkg="psr_exercicios" type="$(arg blue)" name="ctf_1" output="screen">
+      <param name="robot" value="1"/><param name="team" value="blue"/><param name="role" value="defender"/>
+      <rosparam param="opponents">[2, 3]</rosparam>
+    </node>
+    <node unless="$(eval arg('red') == 'none')" pkg="psr_exercicios" type="$(arg red)" name="ctf_2" output="screen">
+      <param name="robot" value="2"/><param name="team" value="red"/><param name="role" value="attacker"/>
+      <rosparam param="opponents">[0, 1]</rosparam>
+    </node>
+    <node unless="$(eval arg('red') == 'none')" pkg="psr_exercicios" type="$(arg red)" name="ctf_3" output="screen">
+      <param name="robot" value="3"/><param name="team" value="red"/><param name="role" value="defender"/>
+      <rosparam param="opponents">[0, 1]</rosparam>
+    </node>
+  </group>
+
+  <group if="$(eval arg('robots') == 2)">
+    <node unless="$(eval arg('blue') == 'none')" pkg="psr_exercicios" type="$(arg blue)" name="ctf_0" output="screen">
+      <param name="robot" value="0"/><param name="team" value="blue"/><param name="role" value="attacker"/>
+      <rosparam param="opponents">[1]</rosparam>
+    </node>
+    <node unless="$(eval arg('red') == 'none')" pkg="psr_exercicios" type="$(arg red)" name="ctf_1" output="screen">
+      <param name="robot" value="1"/><param name="team" value="red"/><param name="role" value="attacker"/>
+      <rosparam param="opponents">[0]</rosparam>
+    </node>
+  </group>
+</launch>

@@ -1,0 +1,15 @@
+<launch>
+  <!-- Bridge to the simulator + one node per robot.
+       robot0 / robot1: script that drives the robot (inside sumo/) or none -->
+  <arg name="robot0" default="sumo.py"/>
+  <arg name="robot1" default="sumo.py"/>
+  <include file="$(find psr_hero)/launch/bridge.launch"/>
+  <node unless="$(eval arg('robot0') == 'none')" pkg="psr_exercicios" type="$(arg robot0)" name="sumo_0" output="screen">
+    <param name="robot" value="0"/>
+    <param name="opponent" value="1"/>
+  </node>
+  <node unless="$(eval arg('robot1') == 'none')" pkg="psr_exercicios" type="$(arg robot1)" name="sumo_1" output="screen">
+    <param name="robot" value="1"/>
+    <param name="opponent" value="0"/>
+  </node>
+</launch>

@@ -1,0 +1,9 @@
+<launch>
+  <!-- the simulator bridge (roslaunch also starts roscore if needed) -->
+  <arg name="host" default="$(optenv PSR_SIM_HOST sim)"/>
+  <arg name="port" default="$(optenv PSR_SIM_PORT 11312)"/>
+  <node pkg="psr_hero" type="hero_bridge.py" name="hero_bridge" output="screen">
+    <param name="host" value="$(arg host)"/>
+    <param name="port" value="$(arg port)"/>
+  </node>
+</launch>
