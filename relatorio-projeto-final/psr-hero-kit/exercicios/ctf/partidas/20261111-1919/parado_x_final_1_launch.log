@@ -1,0 +1,58 @@
+[psr] rodando exercicios/ctf (Ctrl-C para parar; o simulador continua aberto)
+... logging to /root/.ros/log/0408f22e-de1f-11f1-b0cf-6aae465c1620/roslaunch-c6dd011aec49-1.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/ws/psr_exercicios/launch/ctf.launch
+[1mstarted roslaunch server http://c6dd011aec49:43135/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /ctf_2/opponents: [0, 1]
+ * /ctf_2/robot: 2
+ * /ctf_2/role: attacker
+ * /ctf_2/team: red
+ * /ctf_3/opponents: [0, 1]
+ * /ctf_3/robot: 3
+ * /ctf_3/role: defender
+ * /ctf_3/team: red
+ * /hero_bridge/host: psrkit-sim
+ * /hero_bridge/port: 11312
+ * /rosdistro: noetic
+ * /rosversion: 1.17.4
+
+NODES
+  /
+    ctf_2 (psr_exercicios/ctf.py)
+    ctf_3 (psr_exercicios/ctf.py)
+    hero_bridge (psr_hero/hero_bridge.py)
+
+auto-starting new master
+[1mprocess[master]: started with pid [30][0m
+[1mROS_MASTER_URI=http://localhost:11311[0m
+]2;/ws/psr_exercicios/launch/ctf.launch http://localhost:11311
+[1msetting /run_id to 0408f22e-de1f-11f1-b0cf-6aae465c1620[0m
+[1mprocess[rosout-1]: started with pid [40][0m
+started core service [/rosout]
+[1mprocess[hero_bridge-2]: started with pid [47][0m
+[1mprocess[ctf_2-3]: started with pid [48][0m
+[1mprocess[ctf_3-4]: started with pid [49][0m
+[INFO] [1794436023.633676]: ctf: hero_2 time red papel attacker adversarios [0, 1]
+[WARN] [1794436023.636428]: waiting for odometry and flags (TODO 1)
+[INFO] [1794436023.656251]: connected to the simulator at psrkit-sim:11312
+[INFO] [1794436023.801313]: scenario 'ctf' with 4 robot(s)
+[INFO] [1794436023.855127]: ctf: hero_3 time red papel defender adversarios [0, 1]
+[WARN] [1794436023.863803]: waiting for odometry and flags (TODO 1)
+[INFO] [1794436023.986791]: hero_2: inicio -> atacar
+[INFO] [1794436024.021537]: hero_3: inicio -> guardar
+[INFO] [1794436036.388150]: hero_2: atacar -> voltar
+[INFO] [1794436048.937501]: hero_2: voltar -> atacar
+[INFO] [1794436063.086512]: hero_2: atacar -> voltar
+[INFO] [1794436074.037398]: hero_2: voltar -> atacar
+[INFO] [1794436088.137474]: hero_2: atacar -> voltar
+[INFO] [1794436099.090825]: hero_2: voltar -> atacar
+[INFO] [1794436114.136821]: hero_2: atacar -> voltar
+[INFO] [1794436123.836842]: hero_2: voltar -> atacar
+[INFO] [1794436137.186488]: hero_2: atacar -> voltar

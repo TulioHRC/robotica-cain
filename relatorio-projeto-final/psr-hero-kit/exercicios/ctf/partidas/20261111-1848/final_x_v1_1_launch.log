@@ -1,0 +1,103 @@
+[psr] rodando exercicios/ctf (Ctrl-C para parar; o simulador continua aberto)
+... logging to /root/.ros/log/3fca69cc-de1b-11f1-b902-e2a0430f3587/roslaunch-a43f0ef35431-1.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/ws/psr_exercicios/launch/ctf.launch
+[1mstarted roslaunch server http://a43f0ef35431:42319/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /ctf_0/opponents: [2, 3]
+ * /ctf_0/robot: 0
+ * /ctf_0/role: attacker
+ * /ctf_0/team: blue
+ * /ctf_1/opponents: [2, 3]
+ * /ctf_1/robot: 1
+ * /ctf_1/role: defender
+ * /ctf_1/team: blue
+ * /ctf_2/opponents: [0, 1]
+ * /ctf_2/robot: 2
+ * /ctf_2/role: attacker
+ * /ctf_2/team: red
+ * /ctf_3/opponents: [0, 1]
+ * /ctf_3/robot: 3
+ * /ctf_3/role: defender
+ * /ctf_3/team: red
+ * /hero_bridge/host: psrkit-sim
+ * /hero_bridge/port: 11312
+ * /rosdistro: noetic
+ * /rosversion: 1.17.4
+
+NODES
+  /
+    ctf_0 (psr_exercicios/ctf.py)
+    ctf_1 (psr_exercicios/ctf.py)
+    ctf_2 (psr_exercicios/ctf_v1.py)
+    ctf_3 (psr_exercicios/ctf_v1.py)
+    hero_bridge (psr_hero/hero_bridge.py)
+
+auto-starting new master
+[1mprocess[master]: started with pid [30][0m
+[1mROS_MASTER_URI=http://localhost:11311[0m
+]2;/ws/psr_exercicios/launch/ctf.launch http://localhost:11311
+[1msetting /run_id to 3fca69cc-de1b-11f1-b902-e2a0430f3587[0m
+[1mprocess[rosout-1]: started with pid [40][0m
+started core service [/rosout]
+[1mprocess[hero_bridge-2]: started with pid [47][0m
+[1mprocess[ctf_0-3]: started with pid [48][0m
+[1mprocess[ctf_1-4]: started with pid [49][0m
+[1mprocess[ctf_2-5]: started with pid [50][0m
+[1mprocess[ctf_3-6]: started with pid [51][0m
+[INFO] [1794434406.408579]: connected to the simulator at psrkit-sim:11312
+[WARN] [1794434406.555880]: waiting for odometry and flags (TODO 1)
+[WARN] [1794434406.578111]: waiting for odometry and flags (TODO 1)
+[INFO] [1794434406.644863]: ctf: hero_0 time blue papel attacker adversarios [2, 3]
+[WARN] [1794434406.662667]: waiting for odometry and flags (TODO 1)
+[INFO] [1794434406.740552]: scenario 'ctf' with 4 robot(s)
+[INFO] [1794434406.787383]: ctf: hero_1 time blue papel defender adversarios [2, 3]
+[WARN] [1794434406.798404]: waiting for odometry and flags (TODO 1)
+[INFO] [1794434406.950624]: hero_1: inicio -> guardar
+[INFO] [1794434406.959569]: hero_0: inicio -> atacar
+[INFO] [1794434413.748764]: hero_1: guardar -> interceptar
+[INFO] [1794434416.298492]: hero_1: interceptar -> marcar
+[INFO] [1794434423.109871]: hero_0: atacar -> recuar
+[INFO] [1794434428.401146]: hero_1: marcar -> interceptar
+[INFO] [1794434429.903173]: hero_1: travado, manobrando
+[INFO] [1794434432.399186]: hero_1: interceptar -> marcar
+[INFO] [1794434433.202424]: hero_1: travado, manobrando
+[INFO] [1794434435.451106]: hero_1: travado, manobrando
+[INFO] [1794434440.759891]: hero_0: segurado -> recuar
+[INFO] [1794434443.349335]: hero_1: marcar -> interceptar
+[INFO] [1794434445.149318]: hero_1: interceptar -> resgatar
+[INFO] [1794434446.602539]: hero_1: resgatar -> marcar
+[INFO] [1794434453.260070]: hero_0: segurado -> recuar
+[INFO] [1794434456.099131]: hero_1: marcar -> interceptar
+[INFO] [1794434456.601372]: hero_1: interceptar -> resgatar
+[INFO] [1794434458.249681]: hero_1: travado, manobrando
+[INFO] [1794434463.599260]: hero_1: resgatar -> guardar
+[INFO] [1794434466.267416]: hero_0: segurado -> recuar
+[INFO] [1794434474.162358]: hero_0: travado, manobrando
+[INFO] [1794434474.659919]: hero_0: recuar -> atacar
+[INFO] [1794434480.999325]: hero_1: guardar -> interceptar
+[INFO] [1794434483.449087]: hero_1: interceptar -> marcar
+[INFO] [1794434489.810776]: hero_0: atacar -> recuar
+[INFO] [1794434492.999208]: hero_1: marcar -> interceptar
+[INFO] [1794434494.549091]: hero_1: travado, manobrando
+[INFO] [1794434496.450270]: hero_1: interceptar -> marcar
+[INFO] [1794434503.860940]: hero_0: recuar -> atacar
+[INFO] [1794434505.951377]: hero_1: marcar -> interceptar
+[INFO] [1794434508.300721]: hero_1: interceptar -> resgatar
+[INFO] [1794434510.049036]: hero_1: resgatar -> marcar
+[INFO] [1794434510.461638]: hero_1: travado, manobrando
+[INFO] [1794434519.049668]: hero_1: marcar -> interceptar
+[INFO] [1794434519.651817]: hero_1: interceptar -> resgatar
+[INFO] [1794434525.598402]: hero_1: resgatar -> guardar
+[INFO] [1794434529.359498]: hero_0: atacar -> recuar
+[INFO] [1794434534.510504]: hero_0: recuar -> atacar
+[INFO] [1794434539.898437]: hero_1: guardar -> interceptar
+[INFO] [1794434541.948706]: hero_1: interceptar -> marcar
+[INFO] [1794434549.660461]: hero_0: atacar -> recuar
+[INFO] [1794434552.298645]: hero_1: marcar -> interceptar

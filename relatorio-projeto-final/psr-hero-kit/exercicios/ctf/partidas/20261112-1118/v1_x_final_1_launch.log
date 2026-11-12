@@ -1,0 +1,290 @@
+[psr] rodando exercicios/ctf (Ctrl-C para parar; o simulador continua aberto)
+... logging to /root/.ros/log/2bd10230-deb3-11f1-8acd-7e121d1f43b0/roslaunch-dfeb9212f559-1.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/ws/psr_exercicios/launch/ctf.launch
+[1mstarted roslaunch server http://dfeb9212f559:42419/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /ctf_0/opponents: [2, 3]
+ * /ctf_0/robot: 0
+ * /ctf_0/role: attacker
+ * /ctf_0/team: blue
+ * /ctf_1/opponents: [2, 3]
+ * /ctf_1/robot: 1
+ * /ctf_1/role: defender
+ * /ctf_1/team: blue
+ * /ctf_2/opponents: [0, 1]
+ * /ctf_2/robot: 2
+ * /ctf_2/role: attacker
+ * /ctf_2/team: red
+ * /ctf_3/opponents: [0, 1]
+ * /ctf_3/robot: 3
+ * /ctf_3/role: defender
+ * /ctf_3/team: red
+ * /hero_bridge/host: psrkit-sim
+ * /hero_bridge/port: 11312
+ * /rosdistro: noetic
+ * /rosversion: 1.17.4
+
+NODES
+  /
+    ctf_0 (psr_exercicios/ctf_v1.py)
+    ctf_1 (psr_exercicios/ctf_v1.py)
+    ctf_2 (psr_exercicios/ctf.py)
+    ctf_3 (psr_exercicios/ctf.py)
+    hero_bridge (psr_hero/hero_bridge.py)
+
+auto-starting new master
+[1mprocess[master]: started with pid [30][0m
+[1mROS_MASTER_URI=http://localhost:11311[0m
+]2;/ws/psr_exercicios/launch/ctf.launch http://localhost:11311
+[1msetting /run_id to 2bd10230-deb3-11f1-8acd-7e121d1f43b0[0m
+[1mprocess[rosout-1]: started with pid [40][0m
+started core service [/rosout]
+[1mprocess[hero_bridge-2]: started with pid [47][0m
+[1mprocess[ctf_0-3]: started with pid [48][0m
+[1mprocess[ctf_1-4]: started with pid [49][0m
+[1mprocess[ctf_2-5]: started with pid [50][0m
+[1mprocess[ctf_3-6]: started with pid [51][0m
+[INFO] [1794499656.027283]: connected to the simulator at psrkit-sim:11312
+[INFO] [1794499656.117841]: ctf: hero_2 time red papel attacker adversarios [0, 1]
+[WARN] [1794499656.128338]: waiting for odometry and flags (TODO 1)
+[WARN] [1794499656.132480]: waiting for odometry and flags (TODO 1)
+[INFO] [1794499656.222986]: scenario 'ctf' with 4 robot(s)
+[INFO] [1794499656.226308]: ctf: hero_3 time red papel defender adversarios [0, 1]
+[WARN] [1794499656.240015]: waiting for odometry and flags (TODO 1)
+[WARN] [1794499656.257940]: waiting for odometry and flags (TODO 1)
+[INFO] [1794499657.422962]: hero_2: inicio -> atacar
+[INFO] [1794499657.492323]: hero_3: inicio -> guardar
+[INFO] [1794499661.390342]: hero_3: guardar -> interceptar
+[INFO] [1794499663.241551]: hero_3: interceptar -> marcar
+[INFO] [1794499670.590257]: hero_3: marcar -> interceptar
+[INFO] [1794499672.772869]: hero_2: atacar -> voltar
+[INFO] [1794499673.190902]: hero_3: interceptar -> marcar
+[INFO] [1794499680.539859]: hero_3: marcar -> resgatar
+[INFO] [1794499682.191139]: hero_3: resgatar -> interceptar
+[INFO] [1794499683.090412]: hero_3: interceptar -> marcar
+[INFO] [1794499685.273226]: hero_2: voltar -> atacar
+[INFO] [1794499685.290265]: hero_3: marcar -> interceptar
+[INFO] [1794499688.123191]: hero_2: atacar -> cacar
+[INFO] [1794499689.022876]: hero_2: cacar -> atacar
+[INFO] [1794499689.040259]: hero_3: interceptar -> guardar
+[INFO] [1794499693.992901]: hero_3: guardar -> interceptar
+[INFO] [1794499695.843016]: hero_3: interceptar -> marcar
+[INFO] [1794499702.573558]: hero_2: atacar -> recuar
+[INFO] [1794499703.190664]: hero_3: marcar -> interceptar
+[INFO] [1794499704.825179]: hero_2: recuar -> voltar
+[INFO] [1794499706.340131]: hero_3: interceptar -> marcar
+[INFO] [1794499715.590014]: hero_3: marcar -> interceptar
+[INFO] [1794499718.742991]: hero_3: interceptar -> marcar
+[INFO] [1794499719.182923]: hero_2: voltar -> atacar
+[INFO] [1794499719.189891]: hero_3: marcar -> interceptar
+[INFO] [1794499722.221868]: hero_2: atacar -> cacar
+[INFO] [1794499723.072088]: hero_2: cacar -> atacar
+[INFO] [1794499723.090087]: hero_3: interceptar -> guardar
+[INFO] [1794499728.692353]: hero_3: guardar -> interceptar
+[INFO] [1794499731.890299]: hero_3: interceptar -> marcar
+[INFO] [1794499741.790504]: hero_3: marcar -> interceptar
+[INFO] [1794499743.523199]: hero_2: atacar -> voltar
+[INFO] [1794499744.589909]: hero_3: interceptar -> marcar
+[INFO] [1794499752.041408]: hero_3: marcar -> interceptar
+[INFO] [1794499755.140262]: hero_3: interceptar -> marcar
+[INFO] [1794499756.440774]: hero_3: marcar -> interceptar
+[INFO] [1794499756.474519]: hero_2: voltar -> atacar
+[INFO] [1794499759.021956]: hero_2: atacar -> cacar
+[INFO] [1794499759.872561]: hero_2: cacar -> atacar
+[INFO] [1794499759.896573]: hero_3: interceptar -> guardar
+[INFO] [1794499764.540041]: hero_3: guardar -> interceptar
+[INFO] [1794499766.890122]: hero_3: interceptar -> marcar
+[INFO] [1794499775.372361]: hero_2: atacar -> recuar
+[INFO] [1794499775.739989]: hero_3: marcar -> interceptar
+[INFO] [1794499776.923121]: hero_2: recuar -> voltar
+[INFO] [1794499778.289979]: hero_3: interceptar -> marcar
+[INFO] [1794499785.792371]: hero_3: marcar -> interceptar
+[INFO] [1794499789.723678]: hero_2: voltar -> cacar
+[INFO] [1794499793.923603]: hero_2: cacar -> atacar
+[INFO] [1794499793.941523]: hero_3: interceptar -> guardar
+[INFO] [1794499799.641557]: hero_3: guardar -> interceptar
+[INFO] [1794499801.391204]: hero_3: interceptar -> marcar
+[INFO] [1794499808.590264]: hero_3: marcar -> interceptar
+[INFO] [1794499808.872618]: hero_2: atacar -> recuar
+[INFO] [1794499809.822207]: hero_2: recuar -> voltar
+[INFO] [1794499811.140889]: hero_3: interceptar -> marcar
+[INFO] [1794499818.098312]: hero_3: marcar -> resgatar
+[INFO] [1794499819.191880]: hero_3: resgatar -> interceptar
+[INFO] [1794499819.740086]: hero_3: interceptar -> resgatar
+[INFO] [1794499820.590245]: hero_3: resgatar -> marcar
+[INFO] [1794499821.172254]: hero_2: voltar -> atacar
+[INFO] [1794499821.190226]: hero_3: marcar -> interceptar
+[INFO] [1794499823.729026]: hero_2: atacar -> cacar
+[INFO] [1794499824.473536]: hero_2: cacar -> atacar
+[INFO] [1794499824.491055]: hero_3: interceptar -> guardar
+[INFO] [1794499830.340620]: hero_3: guardar -> interceptar
+[INFO] [1794499832.739969]: hero_3: interceptar -> marcar
+[INFO] [1794499840.321990]: hero_2: atacar -> recuar
+[INFO] [1794499840.790963]: hero_3: marcar -> interceptar
+[INFO] [1794499842.524067]: hero_2: recuar -> voltar
+[INFO] [1794499844.190152]: hero_3: interceptar -> marcar
+[INFO] [1794499851.693116]: hero_3: marcar -> interceptar
+[INFO] [1794499854.343063]: hero_3: interceptar -> marcar
+[INFO] [1794499854.790079]: hero_3: marcar -> interceptar
+[INFO] [1794499854.822064]: hero_2: voltar -> atacar
+[INFO] [1794499857.323224]: hero_2: atacar -> cacar
+[INFO] [1794499858.840472]: hero_3: interceptar -> guardar
+[INFO] [1794499858.873100]: hero_2: cacar -> atacar
+[INFO] [1794499863.690741]: hero_3: guardar -> interceptar
+[INFO] [1794499865.440431]: hero_3: interceptar -> marcar
+[INFO] [1794499872.023047]: hero_2: atacar -> recuar
+[INFO] [1794499873.196346]: hero_3: marcar -> interceptar
+[INFO] [1794499874.672052]: hero_2: recuar -> voltar
+[INFO] [1794499876.140196]: hero_3: interceptar -> marcar
+[INFO] [1794499885.640450]: hero_3: marcar -> interceptar
+[INFO] [1794499888.690950]: hero_3: interceptar -> marcar
+[INFO] [1794499889.024554]: hero_2: voltar -> atacar
+[INFO] [1794499889.041170]: hero_3: marcar -> interceptar
+[INFO] [1794499891.622146]: hero_2: atacar -> cacar
+[INFO] [1794499892.440333]: hero_3: interceptar -> guardar
+[INFO] [1794499892.472169]: hero_2: cacar -> atacar
+[INFO] [1794499896.991641]: hero_3: guardar -> interceptar
+[INFO] [1794499898.892040]: hero_3: interceptar -> marcar
+[INFO] [1794499905.121850]: hero_2: atacar -> recuar
+[INFO] [1794499906.090298]: hero_3: marcar -> interceptar
+[INFO] [1794499907.324925]: hero_2: recuar -> voltar
+[INFO] [1794499910.093030]: hero_3: interceptar -> resgatar
+[INFO] [1794499910.191535]: hero_3: resgatar -> marcar
+[INFO] [1794499917.341137]: hero_3: marcar -> resgatar
+[INFO] [1794499918.239970]: hero_3: resgatar -> interceptar
+[INFO] [1794499918.891255]: hero_3: interceptar -> resgatar
+[INFO] [1794499919.021995]: hero_2: voltar -> atacar
+[INFO] [1794499919.041024]: hero_3: resgatar -> interceptar
+[INFO] [1794499919.872432]: hero_2: atacar -> cacar
+[INFO] [1794499922.389926]: hero_3: interceptar -> guardar
+[INFO] [1794499922.422153]: hero_2: cacar -> atacar
+[INFO] [1794499926.890879]: hero_3: guardar -> interceptar
+[INFO] [1794499928.841930]: hero_3: interceptar -> marcar
+[INFO] [1794499935.390518]: hero_3: marcar -> interceptar
+[INFO] [1794499936.872009]: hero_2: atacar -> voltar
+[INFO] [1794499937.992089]: hero_3: interceptar -> marcar
+[INFO] [1794499944.691756]: hero_3: marcar -> interceptar
+[INFO] [1794499947.140998]: hero_3: interceptar -> marcar
+[INFO] [1794499948.340195]: hero_3: marcar -> interceptar
+[INFO] [1794499948.374892]: hero_2: voltar -> atacar
+[INFO] [1794499950.872256]: hero_2: atacar -> cacar
+[INFO] [1794499951.740885]: hero_3: interceptar -> guardar
+[INFO] [1794499951.772806]: hero_2: cacar -> atacar
+[INFO] [1794499956.540926]: hero_3: guardar -> interceptar
+[INFO] [1794499958.443373]: hero_3: interceptar -> marcar
+[INFO] [1794499966.041204]: hero_3: marcar -> interceptar
+[INFO] [1794499967.522523]: hero_2: atacar -> voltar
+[INFO] [1794499968.740073]: hero_3: interceptar -> marcar
+[INFO] [1794499977.190884]: hero_3: marcar -> interceptar
+[INFO] [1794499980.041072]: hero_3: interceptar -> marcar
+[INFO] [1794499981.421966]: hero_2: voltar -> atacar
+[INFO] [1794499981.440038]: hero_3: marcar -> interceptar
+[INFO] [1794499984.325120]: hero_2: atacar -> cacar
+[INFO] [1794499985.190019]: hero_3: interceptar -> guardar
+[INFO] [1794499985.222316]: hero_2: cacar -> atacar
+[INFO] [1794499990.344127]: hero_3: guardar -> interceptar
+[INFO] [1794499992.141519]: hero_3: interceptar -> marcar
+[INFO] [1794499999.524280]: hero_2: atacar -> recuar
+[INFO] [1794499999.643543]: hero_3: marcar -> interceptar
+[INFO] [1794500001.422248]: hero_2: recuar -> voltar
+[INFO] [1794500002.790150]: hero_3: interceptar -> marcar
+[INFO] [1794500010.090398]: hero_3: marcar -> interceptar
+[INFO] [1794500012.691076]: hero_3: interceptar -> marcar
+[INFO] [1794500013.090563]: hero_3: marcar -> interceptar
+[INFO] [1794500013.123246]: hero_2: voltar -> atacar
+[INFO] [1794500015.922168]: hero_2: atacar -> cacar
+[INFO] [1794500016.941075]: hero_3: interceptar -> guardar
+[INFO] [1794500016.972268]: hero_2: cacar -> atacar
+[INFO] [1794500021.789981]: hero_3: guardar -> interceptar
+[INFO] [1794500023.846129]: hero_3: interceptar -> marcar
+[INFO] [1794500031.589999]: hero_3: marcar -> interceptar
+[INFO] [1794500033.022169]: hero_2: atacar -> voltar
+[INFO] [1794500034.390442]: hero_3: interceptar -> marcar
+[INFO] [1794500042.340928]: hero_3: marcar -> interceptar
+[INFO] [1794500045.040106]: hero_3: interceptar -> marcar
+[INFO] [1794500046.374748]: hero_2: voltar -> atacar
+[INFO] [1794500046.396081]: hero_3: marcar -> interceptar
+[INFO] [1794500049.179169]: hero_2: atacar -> cacar
+[INFO] [1794500050.122156]: hero_2: cacar -> atacar
+[INFO] [1794500050.140273]: hero_3: interceptar -> guardar
+[INFO] [1794500054.991889]: hero_3: guardar -> interceptar
+[INFO] [1794500056.740112]: hero_3: interceptar -> marcar
+[INFO] [1794500064.191154]: hero_3: marcar -> interceptar
+[INFO] [1794500065.573085]: hero_2: atacar -> voltar
+[INFO] [1794500066.942987]: hero_3: interceptar -> marcar
+[INFO] [1794500074.245093]: hero_3: marcar -> resgatar
+[INFO] [1794500075.890572]: hero_3: resgatar -> interceptar
+[INFO] [1794500076.391192]: hero_3: interceptar -> resgatar
+[INFO] [1794500077.441053]: hero_3: resgatar -> marcar
+[INFO] [1794500078.641096]: hero_3: marcar -> interceptar
+[INFO] [1794500078.672744]: hero_2: voltar -> atacar
+[INFO] [1794500081.572089]: hero_2: atacar -> cacar
+[INFO] [1794500082.390236]: hero_3: interceptar -> guardar
+[INFO] [1794500082.422405]: hero_2: cacar -> atacar
+[INFO] [1794500087.340183]: hero_3: guardar -> interceptar
+[INFO] [1794500089.141590]: hero_3: interceptar -> marcar
+[INFO] [1794500095.994759]: hero_3: marcar -> interceptar
+[INFO] [1794500096.273853]: hero_2: atacar -> recuar
+[INFO] [1794500097.272099]: hero_2: recuar -> voltar
+[INFO] [1794500098.491870]: hero_3: interceptar -> marcar
+[INFO] [1794500105.490387]: hero_3: marcar -> resgatar
+[INFO] [1794500106.790248]: hero_3: resgatar -> interceptar
+[INFO] [1794500107.990942]: hero_3: interceptar -> marcar
+[INFO] [1794500108.522671]: hero_2: voltar -> atacar
+[INFO] [1794500108.540252]: hero_3: marcar -> interceptar
+[INFO] [1794500111.373364]: hero_2: atacar -> cacar
+[INFO] [1794500112.292944]: hero_3: interceptar -> guardar
+[INFO] [1794500112.322094]: hero_2: cacar -> atacar
+[INFO] [1794500117.142950]: hero_3: guardar -> interceptar
+[INFO] [1794500118.940585]: hero_3: interceptar -> marcar
+[INFO] [1794500127.275292]: hero_2: atacar -> recuar
+[INFO] [1794500128.940478]: hero_3: marcar -> interceptar
+[INFO] [1794500130.222085]: hero_2: recuar -> voltar
+[INFO] [1794500133.540056]: hero_3: interceptar -> resgatar
+[INFO] [1794500133.690554]: hero_3: resgatar -> marcar
+[INFO] [1794500142.092397]: hero_3: marcar -> resgatar
+[INFO] [1794500143.190223]: hero_3: resgatar -> interceptar
+[INFO] [1794500143.890178]: hero_3: interceptar -> resgatar
+[INFO] [1794500144.140433]: hero_3: resgatar -> interceptar
+[INFO] [1794500144.172280]: hero_2: voltar -> atacar
+[INFO] [1794500145.222363]: hero_2: atacar -> cacar
+[INFO] [1794500148.272259]: hero_2: cacar -> atacar
+[INFO] [1794500148.290565]: hero_3: interceptar -> guardar
+[INFO] [1794500153.740968]: hero_3: guardar -> interceptar
+[INFO] [1794500155.591169]: hero_3: interceptar -> marcar
+[INFO] [1794500162.824343]: hero_2: atacar -> recuar
+[INFO] [1794500162.890016]: hero_3: marcar -> interceptar
+[INFO] [1794500164.322636]: hero_2: recuar -> voltar
+[INFO] [1794500165.789855]: hero_3: interceptar -> marcar
+[INFO] [1794500173.590124]: hero_3: marcar -> interceptar
+[INFO] [1794500176.291723]: hero_3: interceptar -> marcar
+[INFO] [1794500176.792019]: hero_3: marcar -> interceptar
+[INFO] [1794500176.834198]: hero_2: voltar -> atacar
+[INFO] [1794500179.472717]: hero_2: atacar -> cacar
+[INFO] [1794500180.422471]: hero_2: cacar -> atacar
+[INFO] [1794500180.440675]: hero_3: interceptar -> guardar
+[INFO] [1794500185.490144]: hero_3: guardar -> interceptar
+[INFO] [1794500187.342720]: hero_3: interceptar -> marcar
+[INFO] [1794500193.872149]: hero_2: atacar -> recuar
+[INFO] [1794500194.990193]: hero_3: marcar -> interceptar
+[INFO] [1794500196.322518]: hero_2: recuar -> voltar
+[INFO] [1794500197.840281]: hero_3: interceptar -> marcar
+[INFO] [1794500204.992197]: hero_3: marcar -> interceptar
+[INFO] [1794500207.590375]: hero_3: interceptar -> marcar
+[INFO] [1794500207.772042]: hero_2: voltar -> atacar
+[INFO] [1794500207.790545]: hero_3: marcar -> interceptar
+[INFO] [1794500210.323233]: hero_2: atacar -> cacar
+[INFO] [1794500211.271882]: hero_2: cacar -> atacar
+[INFO] [1794500211.290075]: hero_3: interceptar -> guardar
+[INFO] [1794500215.889868]: hero_3: guardar -> interceptar
+[INFO] [1794500217.640222]: hero_3: interceptar -> marcar
+[INFO] [1794500224.943986]: hero_3: marcar -> interceptar
+[INFO] [1794500226.522719]: hero_2: atacar -> voltar
+[INFO] [1794500227.690019]: hero_3: interceptar -> marcar

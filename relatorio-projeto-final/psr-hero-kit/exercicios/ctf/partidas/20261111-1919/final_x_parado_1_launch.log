@@ -1,0 +1,58 @@
+[psr] rodando exercicios/ctf (Ctrl-C para parar; o simulador continua aberto)
+... logging to /root/.ros/log/557803d0-de1e-11f1-bac7-0ed6a22b32b5/roslaunch-4a1a46de90de-1.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/ws/psr_exercicios/launch/ctf.launch
+[1mstarted roslaunch server http://4a1a46de90de:38067/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /ctf_0/opponents: [2, 3]
+ * /ctf_0/robot: 0
+ * /ctf_0/role: attacker
+ * /ctf_0/team: blue
+ * /ctf_1/opponents: [2, 3]
+ * /ctf_1/robot: 1
+ * /ctf_1/role: defender
+ * /ctf_1/team: blue
+ * /hero_bridge/host: psrkit-sim
+ * /hero_bridge/port: 11312
+ * /rosdistro: noetic
+ * /rosversion: 1.17.4
+
+NODES
+  /
+    ctf_0 (psr_exercicios/ctf.py)
+    ctf_1 (psr_exercicios/ctf.py)
+    hero_bridge (psr_hero/hero_bridge.py)
+
+auto-starting new master
+[1mprocess[master]: started with pid [30][0m
+[1mROS_MASTER_URI=http://localhost:11311[0m
+]2;/ws/psr_exercicios/launch/ctf.launch http://localhost:11311
+[1msetting /run_id to 557803d0-de1e-11f1-bac7-0ed6a22b32b5[0m
+[1mprocess[rosout-1]: started with pid [40][0m
+started core service [/rosout]
+[1mprocess[hero_bridge-2]: started with pid [47][0m
+[1mprocess[ctf_0-3]: started with pid [48][0m
+[1mprocess[ctf_1-4]: started with pid [49][0m
+[INFO] [1794435730.771235]: connected to the simulator at psrkit-sim:11312
+[INFO] [1794435730.805085]: ctf: hero_1 time blue papel defender adversarios [2, 3]
+[WARN] [1794435730.810303]: waiting for odometry and flags (TODO 1)
+[INFO] [1794435730.873711]: ctf: hero_0 time blue papel attacker adversarios [2, 3]
+[WARN] [1794435730.886778]: waiting for odometry and flags (TODO 1)
+[INFO] [1794435730.941696]: scenario 'ctf' with 4 robot(s)
+[INFO] [1794435731.110480]: hero_1: inicio -> guardar
+[INFO] [1794435731.137720]: hero_0: inicio -> atacar
+[INFO] [1794435742.387483]: hero_0: atacar -> voltar
+[INFO] [1794435753.588028]: hero_0: voltar -> atacar
+[INFO] [1794435767.888908]: hero_0: atacar -> voltar
+[INFO] [1794435778.838031]: hero_0: voltar -> atacar
+[INFO] [1794435793.437549]: hero_0: atacar -> voltar
+[INFO] [1794435804.637590]: hero_0: voltar -> atacar
+[INFO] [1794435819.487227]: hero_0: atacar -> voltar
+[INFO] [1794435831.787259]: hero_0: voltar -> atacar
+[INFO] [1794435847.387617]: hero_0: atacar -> voltar

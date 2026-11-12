@@ -1,0 +1,5 @@
+partida,azul,vermelho,placar_azul,placar_vermelho,empates_90s,capturas_por_azul,capturas_por_vermelho,pegou_bandeira_azul,pegou_bandeira_vermelho,perdeu_bandeira_azul,perdeu_bandeira_vermelho,tempo_jogo_s,tempo_relogio_s,fim
+final_x_parado_1,ctf.py,none,4,0,0,0,0,5,0,0,0,60.0,113.9,tempo
+parado_x_final_1,none,ctf.py,0,4,0,0,0,0,5,0,0,60.0,119.7,tempo
+final_x_v1_1,ctf.py,ctf_v1.py,0,2,0,7,3,0,2,0,2,60.0,144.1,tempo
+v1_x_final_1,ctf_v1.py,ctf.py,1,1,0,0,9,3,3,3,0,60.0,131.3,tempo

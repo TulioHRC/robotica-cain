@@ -1,0 +1,94 @@
+t_relogio,t_jogo,evento,detalhe
+0.00,0.00,inicio,"{""score"": [0, 0], ""tags"": [0, 0, 0, 0], ""held"": [false, false, false, false], ""carrying"": [false, false, false, false], ""base_x"": 0.62, ""base_radius"": 0.14, ""round_time"": 2.9, ""t"": 2.94, ""message"": """"}"
+8.76,5.10,pegou_bandeira,hero_0
+18.09,10.70,largou_bandeira,hero_0
+18.10,10.70,ponto,azul 1 x 0 vermelho
+21.44,12.70,nova_rodada,round_time 15.6 -> 0.0
+30.74,18.20,pegou_bandeira,hero_0
+39.80,23.80,largou_bandeira,hero_0
+39.81,23.80,ponto,azul 2 x 0 vermelho
+43.19,25.80,nova_rodada,round_time 13.1 -> 0.0
+51.94,31.20,pegou_bandeira,hero_0
+62.16,37.30,largou_bandeira,hero_0
+62.16,37.30,ponto,azul 3 x 0 vermelho
+65.51,39.30,nova_rodada,round_time 13.5 -> 0.0
+74.71,44.70,pegou_bandeira,hero_0
+84.32,50.30,largou_bandeira,hero_0
+84.32,50.40,ponto,azul 4 x 0 vermelho
+88.04,52.40,nova_rodada,round_time 13.1 -> 0.0
+97.10,57.80,pegou_bandeira,hero_0
+107.52,63.90,largou_bandeira,hero_0
+107.52,63.90,ponto,azul 5 x 0 vermelho
+111.00,65.90,nova_rodada,round_time 13.5 -> 0.0
+120.41,71.40,pegou_bandeira,hero_0
+129.67,77.00,largou_bandeira,hero_0
+129.67,77.10,ponto,azul 6 x 0 vermelho
+133.16,79.00,nova_rodada,round_time 13.1 -> 0.0
+142.48,84.40,pegou_bandeira,hero_0
+151.94,90.00,ponto,azul 7 x 0 vermelho
+151.94,90.00,largou_bandeira,hero_0
+155.41,92.00,nova_rodada,round_time 13.0 -> 0.0
+164.40,97.40,pegou_bandeira,hero_0
+173.61,103.00,largou_bandeira,hero_0
+173.61,103.00,ponto,azul 8 x 0 vermelho
+177.02,105.00,nova_rodada,round_time 13.0 -> 0.0
+187.62,110.50,pegou_bandeira,hero_0
+197.94,116.10,largou_bandeira,hero_0
+197.94,116.20,ponto,azul 9 x 0 vermelho
+201.50,118.10,nova_rodada,round_time 13.1 -> 0.0
+211.08,123.60,pegou_bandeira,hero_0
+220.65,129.20,largou_bandeira,hero_0
+220.66,129.20,ponto,azul 10 x 0 vermelho
+223.99,131.20,nova_rodada,round_time 13.1 -> 0.0
+233.31,136.70,pegou_bandeira,hero_0
+242.64,142.40,largou_bandeira,hero_0
+242.65,142.40,ponto,azul 11 x 0 vermelho
+246.14,144.40,nova_rodada,round_time 13.2 -> 0.0
+255.55,150.00,pegou_bandeira,hero_0
+264.81,155.60,largou_bandeira,hero_0
+264.82,155.60,ponto,azul 12 x 0 vermelho
+268.52,157.60,nova_rodada,round_time 13.2 -> 0.0
+277.35,163.00,pegou_bandeira,hero_0
+286.94,168.60,largou_bandeira,hero_0
+286.94,168.70,ponto,azul 13 x 0 vermelho
+290.41,170.70,nova_rodada,round_time 13.1 -> 0.0
+299.53,176.20,pegou_bandeira,hero_0
+308.85,181.80,largou_bandeira,hero_0
+308.86,181.80,ponto,azul 14 x 0 vermelho
+312.32,183.80,nova_rodada,round_time 13.1 -> 0.0
+321.34,189.20,pegou_bandeira,hero_0
+330.58,194.70,largou_bandeira,hero_0
+330.58,194.70,ponto,azul 15 x 0 vermelho
+333.95,196.70,nova_rodada,round_time 12.9 -> 0.0
+343.10,202.30,pegou_bandeira,hero_0
+352.66,207.90,largou_bandeira,hero_0
+352.67,208.00,ponto,azul 16 x 0 vermelho
+357.62,209.90,nova_rodada,round_time 13.2 -> 0.0
+367.15,215.30,pegou_bandeira,hero_0
+376.33,220.90,largou_bandeira,hero_0
+376.33,220.90,ponto,azul 17 x 0 vermelho
+379.83,222.90,nova_rodada,round_time 13.0 -> 0.0
+388.84,228.30,pegou_bandeira,hero_0
+399.19,234.40,largou_bandeira,hero_0
+399.19,234.40,ponto,azul 18 x 0 vermelho
+402.64,236.40,nova_rodada,round_time 13.5 -> 0.0
+410.78,241.80,pegou_bandeira,hero_0
+419.95,247.40,largou_bandeira,hero_0
+419.95,247.50,ponto,azul 19 x 0 vermelho
+423.25,249.50,nova_rodada,round_time 13.1 -> 0.0
+431.96,255.00,pegou_bandeira,hero_0
+440.43,260.70,largou_bandeira,hero_0
+440.43,260.70,ponto,azul 20 x 0 vermelho
+443.64,262.70,nova_rodada,round_time 13.2 -> 0.0
+453.56,268.20,pegou_bandeira,hero_0
+462.90,273.90,largou_bandeira,hero_0
+462.91,273.90,ponto,azul 21 x 0 vermelho
+466.15,275.90,nova_rodada,round_time 13.2 -> 0.0
+475.01,281.40,pegou_bandeira,hero_0
+483.86,286.90,ponto,azul 22 x 0 vermelho
+483.86,286.90,largou_bandeira,hero_0
+487.13,288.90,nova_rodada,round_time 13.0 -> 0.0
+496.15,294.50,pegou_bandeira,hero_0
+505.08,300.00,largou_bandeira,hero_0
+505.09,300.10,ponto,azul 23 x 0 vermelho
+505.13,300.10,fim,tempo: azul 23 x 0 vermelho

@@ -1,0 +1,20 @@
+t_relogio,t_jogo,evento,detalhe
+0.00,0.00,inicio,"{""score"": [0, 0], ""tags"": [0, 0, 0, 0], ""held"": [false, false, false, false], ""carrying"": [false, false, false, false], ""base_x"": 0.62, ""base_radius"": 0.14, ""round_time"": 3.2, ""t"": 3.22, ""message"": """"}"
+9.89,4.70,pegou_bandeira,hero_0
+21.04,10.30,largou_bandeira,hero_0
+21.05,10.30,ponto,azul 1 x 0 vermelho
+25.09,12.30,nova_rodada,round_time 15.5 -> 0.0
+35.38,17.70,pegou_bandeira,hero_0
+46.30,23.20,largou_bandeira,hero_0
+46.31,23.20,ponto,azul 2 x 0 vermelho
+50.29,25.20,nova_rodada,round_time 12.9 -> 0.0
+60.94,30.60,pegou_bandeira,hero_0
+72.13,36.20,largou_bandeira,hero_0
+72.14,36.30,ponto,azul 3 x 0 vermelho
+76.18,38.30,nova_rodada,round_time 13.1 -> 0.0
+86.97,43.70,pegou_bandeira,hero_0
+99.27,49.30,largou_bandeira,hero_0
+99.27,49.40,ponto,azul 4 x 0 vermelho
+103.76,51.40,nova_rodada,round_time 13.1 -> 0.0
+114.87,56.90,pegou_bandeira,hero_0
+120.95,60.00,fim,tempo: azul 4 x 0 vermelho

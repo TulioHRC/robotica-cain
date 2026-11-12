@@ -1,0 +1,200 @@
+t_relogio,t_jogo,evento,detalhe
+0.00,0.00,inicio,"{""score"": [0, 0], ""tags"": [0, 0, 0, 0], ""held"": [false, false, false, false], ""carrying"": [false, false, false, false], ""base_x"": 0.62, ""base_radius"": 0.14, ""round_time"": 2.4, ""t"": 2.4, ""message"": """"}"
+7.19,3.50,segurado,hero_2
+15.06,7.60,solto,hero_2
+16.65,8.30,pegou_bandeira,hero_0
+17.90,9.00,segurado,hero_2
+26.93,13.10,solto,hero_2
+29.65,14.60,segurado,hero_2
+30.20,14.80,pegou_bandeira,hero_2
+30.85,15.20,largou_bandeira,hero_0
+30.85,15.20,ponto,azul 1 x 0 vermelho
+30.86,15.20,largou_bandeira,hero_2
+30.86,15.20,solto,hero_2
+34.85,17.20,nova_rodada,round_time 19.6 -> 0.0
+42.56,20.90,segurado,hero_2
+50.39,24.90,solto,hero_2
+52.05,25.70,pegou_bandeira,hero_0
+53.47,26.40,segurado,hero_2
+64.41,30.40,solto,hero_2
+68.11,31.90,segurado,hero_2
+69.03,32.20,pegou_bandeira,hero_2
+69.91,32.50,largou_bandeira,hero_0
+69.92,32.50,largou_bandeira,hero_2
+69.92,32.60,ponto,azul 2 x 0 vermelho
+69.94,32.60,solto,hero_2
+74.88,34.60,nova_rodada,round_time 17.4 -> 0.0
+81.59,38.30,segurado,hero_2
+90.42,42.30,solto,hero_2
+92.04,43.10,pegou_bandeira,hero_0
+93.54,43.80,segurado,hero_2
+101.43,47.80,solto,hero_2
+104.27,49.30,segurado,hero_2
+104.55,49.40,pegou_bandeira,hero_2
+105.74,49.90,largou_bandeira,hero_0
+105.74,50.00,ponto,azul 3 x 0 vermelho
+105.74,50.00,largou_bandeira,hero_2
+105.75,50.00,solto,hero_2
+109.90,52.00,nova_rodada,round_time 17.4 -> 0.0
+117.67,55.60,segurado,hero_2
+125.52,59.60,solto,hero_2
+126.95,60.40,pegou_bandeira,hero_0
+128.23,61.10,segurado,hero_2
+135.81,65.10,solto,hero_2
+138.51,66.60,segurado,hero_2
+139.13,66.90,pegou_bandeira,hero_2
+139.77,67.30,ponto,azul 4 x 0 vermelho
+139.77,67.30,largou_bandeira,hero_2
+139.77,67.30,largou_bandeira,hero_0
+139.77,67.30,solto,hero_2
+143.57,69.20,nova_rodada,round_time 17.2 -> 0.0
+150.46,72.90,segurado,hero_2
+158.87,76.90,solto,hero_2
+160.78,77.70,pegou_bandeira,hero_0
+162.13,78.40,segurado,hero_2
+171.34,82.40,solto,hero_2
+174.73,83.90,segurado,hero_2
+175.55,84.10,pegou_bandeira,hero_2
+176.50,84.50,largou_bandeira,hero_2
+176.50,84.50,largou_bandeira,hero_0
+176.50,84.60,ponto,azul 5 x 0 vermelho
+176.51,84.60,solto,hero_2
+181.13,86.50,nova_rodada,round_time 17.3 -> 0.0
+189.14,90.10,segurado,hero_2
+200.24,94.10,solto,hero_2
+202.26,95.00,pegou_bandeira,hero_0
+203.58,95.70,segurado,hero_2
+211.96,99.70,solto,hero_2
+214.89,101.10,segurado,hero_2
+215.50,101.40,pegou_bandeira,hero_2
+216.51,101.90,largou_bandeira,hero_0
+216.52,101.90,largou_bandeira,hero_2
+216.52,101.90,ponto,azul 6 x 0 vermelho
+216.53,101.90,solto,hero_2
+220.32,103.90,nova_rodada,round_time 17.4 -> 0.0
+227.59,107.50,segurado,hero_2
+235.60,111.50,solto,hero_2
+237.32,112.30,pegou_bandeira,hero_0
+238.62,113.00,segurado,hero_2
+247.36,117.00,solto,hero_2
+250.36,118.50,segurado,hero_2
+250.96,118.80,pegou_bandeira,hero_2
+251.59,119.10,largou_bandeira,hero_2
+251.59,119.10,largou_bandeira,hero_0
+251.59,119.20,ponto,azul 7 x 0 vermelho
+251.60,119.20,solto,hero_2
+255.18,121.10,nova_rodada,round_time 17.2 -> 0.0
+262.15,124.70,segurado,hero_2
+269.70,128.80,solto,hero_2
+271.02,129.50,pegou_bandeira,hero_0
+272.27,130.30,segurado,hero_2
+280.06,134.30,solto,hero_2
+282.77,135.80,segurado,hero_2
+283.29,136.00,pegou_bandeira,hero_2
+283.88,136.30,largou_bandeira,hero_0
+283.88,136.30,largou_bandeira,hero_2
+283.88,136.40,ponto,azul 8 x 0 vermelho
+283.89,136.40,solto,hero_2
+287.66,138.40,nova_rodada,round_time 17.3 -> 0.0
+294.50,142.10,segurado,hero_2
+303.01,146.10,solto,hero_2
+304.55,146.90,pegou_bandeira,hero_0
+307.42,148.30,pegou_bandeira,hero_2
+307.67,148.50,segurado,hero_2 (com a bandeira)
+315.59,152.50,solto,hero_2
+318.07,153.70,largou_bandeira,hero_0
+318.07,153.70,largou_bandeira,hero_2
+318.07,153.80,ponto,azul 9 x 0 vermelho
+322.03,155.80,nova_rodada,round_time 17.4 -> 0.0
+329.30,159.50,segurado,hero_2
+339.93,163.50,solto,hero_2
+342.25,164.30,pegou_bandeira,hero_0
+343.73,165.00,segurado,hero_2
+353.16,169.00,solto,hero_2
+356.35,170.50,segurado,hero_2
+357.89,170.90,pegou_bandeira,hero_2
+358.59,171.10,largou_bandeira,hero_0
+358.59,171.10,largou_bandeira,hero_2
+358.59,171.20,ponto,azul 10 x 0 vermelho
+358.60,171.20,solto,hero_2
+367.06,173.20,nova_rodada,round_time 17.4 -> 0.0
+377.45,176.90,segurado,hero_2
+387.99,180.90,solto,hero_2
+390.47,181.70,pegou_bandeira,hero_0
+392.68,182.40,segurado,hero_2
+403.17,186.40,solto,hero_2
+406.03,187.90,segurado,hero_2
+407.34,188.50,largou_bandeira,hero_0
+407.35,188.60,ponto,azul 11 x 0 vermelho
+407.36,188.60,solto,hero_2
+411.16,190.60,nova_rodada,round_time 17.4 -> 0.0
+420.30,194.30,segurado,hero_2
+429.97,198.30,solto,hero_2
+431.68,199.10,pegou_bandeira,hero_0
+433.13,199.80,segurado,hero_2
+437.07,201.30,pegou_bandeira,hero_2
+442.96,203.80,solto,hero_2
+447.14,205.50,largou_bandeira,hero_2
+447.15,205.50,largou_bandeira,hero_0
+447.15,205.50,ponto,azul 12 x 0 vermelho
+452.26,207.50,nova_rodada,round_time 16.9 -> 0.0
+459.67,211.10,segurado,hero_2
+468.54,215.10,solto,hero_2
+471.00,215.90,pegou_bandeira,hero_0
+472.71,216.60,segurado,hero_2
+483.13,220.60,solto,hero_2
+487.05,222.20,segurado,hero_2
+487.53,222.30,largou_bandeira,hero_0
+487.53,222.40,ponto,azul 13 x 0 vermelho
+487.53,222.40,solto,hero_2
+492.14,224.40,nova_rodada,round_time 16.9 -> 0.0
+501.85,228.00,segurado,hero_2
+511.57,232.00,solto,hero_2
+513.99,232.90,pegou_bandeira,hero_0
+516.48,233.50,segurado,hero_2
+528.63,235.90,pegou_bandeira,hero_2
+534.01,237.50,solto,hero_2
+537.70,239.00,largou_bandeira,hero_2
+537.70,239.00,segurado,hero_2
+539.83,239.80,ponto,azul 14 x 0 vermelho
+539.83,239.80,largou_bandeira,hero_0
+539.84,239.80,solto,hero_2
+544.38,241.70,nova_rodada,round_time 17.3 -> 0.0
+553.89,245.40,segurado,hero_2
+564.77,249.40,solto,hero_2
+566.72,250.10,pegou_bandeira,hero_0
+568.55,250.90,segurado,hero_2
+577.91,254.90,solto,hero_2
+580.68,256.50,segurado,hero_2
+580.75,256.50,pegou_bandeira,hero_2
+581.77,257.00,largou_bandeira,hero_0
+581.77,257.00,largou_bandeira,hero_2
+581.77,257.10,ponto,azul 15 x 0 vermelho
+581.79,257.10,solto,hero_2
+585.41,259.00,nova_rodada,round_time 17.3 -> 0.0
+592.25,262.70,segurado,hero_2
+599.73,266.80,solto,hero_2
+601.18,267.50,pegou_bandeira,hero_0
+602.48,268.20,segurado,hero_2
+610.33,272.30,solto,hero_2
+613.03,273.80,segurado,hero_2
+613.58,274.00,pegou_bandeira,hero_2
+614.27,274.40,largou_bandeira,hero_0
+614.27,274.40,largou_bandeira,hero_2
+614.28,274.40,ponto,azul 16 x 0 vermelho
+614.28,274.40,solto,hero_2
+618.06,276.40,nova_rodada,round_time 17.4 -> 0.0
+624.46,280.10,segurado,hero_2
+632.30,284.10,solto,hero_2
+633.65,284.80,pegou_bandeira,hero_0
+635.03,285.60,segurado,hero_2
+637.61,287.00,pegou_bandeira,hero_2
+642.17,289.60,solto,hero_2
+645.04,291.10,segurado,hero_2 (com a bandeira)
+645.05,291.10,largou_bandeira,hero_2
+646.07,291.60,largou_bandeira,hero_0
+646.07,291.70,ponto,azul 17 x 0 vermelho
+646.08,291.70,solto,hero_2
+649.84,293.70,nova_rodada,round_time 17.3 -> 0.0
+658.39,297.50,segurado,hero_2
+666.72,300.10,fim,tempo: azul 17 x 0 vermelho

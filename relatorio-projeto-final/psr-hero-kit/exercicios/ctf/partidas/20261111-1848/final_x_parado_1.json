@@ -1,0 +1,48 @@
+{
+  "partida": "final_x_parado_1",
+  "azul": "ctf.py",
+  "vermelho": "none",
+  "placar_azul": 4,
+  "placar_vermelho": 0,
+  "empates_90s": 0,
+  "tempo_jogo_s": 60.0,
+  "tempo_relogio_s": 113.9,
+  "fim": "tempo",
+  "ultimo_estado": {
+    "score": [
+      4,
+      0
+    ],
+    "tags": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "held": [
+      false,
+      false,
+      false,
+      false
+    ],
+    "carrying": [
+      true,
+      false,
+      false,
+      false
+    ],
+    "base_x": 0.62,
+    "base_radius": 0.14,
+    "round_time": 8.2,
+    "t": 62.94,
+    "message": ""
+  },
+  "pontos_azul": 4,
+  "pontos_vermelho": 0,
+  "capturas_por_azul": 0,
+  "capturas_por_vermelho": 0,
+  "pegou_bandeira_azul": 5,
+  "pegou_bandeira_vermelho": 0,
+  "perdeu_bandeira_azul": 0,
+  "perdeu_bandeira_vermelho": 0
+}

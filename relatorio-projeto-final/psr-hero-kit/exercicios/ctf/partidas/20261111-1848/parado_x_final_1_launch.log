@@ -1,0 +1,59 @@
+[psr] rodando exercicios/ctf (Ctrl-C para parar; o simulador continua aberto)
+... logging to /root/.ros/log/95eb0a2e-de1a-11f1-8e8d-72f378e321ee/roslaunch-6188af6492ba-1.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/ws/psr_exercicios/launch/ctf.launch
+[1mstarted roslaunch server http://6188af6492ba:36493/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /ctf_2/opponents: [0, 1]
+ * /ctf_2/robot: 2
+ * /ctf_2/role: attacker
+ * /ctf_2/team: red
+ * /ctf_3/opponents: [0, 1]
+ * /ctf_3/robot: 3
+ * /ctf_3/role: defender
+ * /ctf_3/team: red
+ * /hero_bridge/host: psrkit-sim
+ * /hero_bridge/port: 11312
+ * /rosdistro: noetic
+ * /rosversion: 1.17.4
+
+NODES
+  /
+    ctf_2 (psr_exercicios/ctf.py)
+    ctf_3 (psr_exercicios/ctf.py)
+    hero_bridge (psr_hero/hero_bridge.py)
+
+auto-starting new master
+[1mprocess[master]: started with pid [30][0m
+[1mROS_MASTER_URI=http://localhost:11311[0m
+]2;/ws/psr_exercicios/launch/ctf.launch http://localhost:11311
+[1msetting /run_id to 95eb0a2e-de1a-11f1-8e8d-72f378e321ee[0m
+[1mprocess[rosout-1]: started with pid [40][0m
+started core service [/rosout]
+[1mprocess[hero_bridge-2]: started with pid [47][0m
+[1mprocess[ctf_2-3]: started with pid [48][0m
+[1mprocess[ctf_3-4]: started with pid [49][0m
+[INFO] [1794434120.687076]: connected to the simulator at psrkit-sim:11312
+[INFO] [1794434120.760779]: scenario 'ctf' with 4 robot(s)
+[INFO] [1794434120.856493]: ctf: hero_2 time red papel attacker adversarios [0, 1]
+[WARN] [1794434120.861946]: waiting for odometry and flags (TODO 1)
+[INFO] [1794434120.905970]: ctf: hero_3 time red papel defender adversarios [0, 1]
+[WARN] [1794434120.920532]: waiting for odometry and flags (TODO 1)
+[INFO] [1794434120.961652]: hero_2: inicio -> atacar
+[INFO] [1794434121.023276]: hero_3: inicio -> guardar
+[INFO] [1794434131.261810]: hero_2: atacar -> voltar
+[INFO] [1794434141.623288]: hero_2: voltar -> atacar
+[INFO] [1794434156.362420]: hero_2: atacar -> voltar
+[INFO] [1794434168.812473]: hero_2: voltar -> atacar
+[INFO] [1794434182.511785]: hero_2: atacar -> voltar
+[INFO] [1794434195.663282]: hero_2: voltar -> atacar
+[INFO] [1794434210.313355]: hero_2: atacar -> voltar
+[INFO] [1794434220.962955]: hero_2: voltar -> atacar
+[INFO] [1794434225.465640]: hero_2: travado, manobrando
+[INFO] [1794434236.662395]: hero_2: atacar -> voltar
