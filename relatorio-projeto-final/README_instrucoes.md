@@ -10,8 +10,8 @@ Este repositório é o kit de simulação `psr-hero-kit` da disciplina acrescido
 
 | Caminho                          | Conteúdo                                                           | Responsável |
 | -------------------------------- | ------------------------------------------------------------------ | ----------- |
-| `exercicios/sumo/sumo.py`        | versão final do sumô (arquivo de competição)                       | Ari         |
-| `exercicios/sumo/sumo_v1.py`     | versão anterior, usada nas comparações                             | Ari         |
+| `exercicios/sumo/sumo.py`        | versão final do sumô (arquivo de competição): estratégia órbita    | Ari         |
+| `exercicios/sumo/sumo_v1.py`     | versão anterior, usada nas comparações: mira para a borda          | Ari         |
 | `exercicios/ctf/ctf.py`          | versão final do rouba-bandeira (arquivo de competição)             | Caio        |
 | `exercicios/ctf/ctf_v1.py`       | versão anterior                                                    | Caio        |
 | `exercicios/soccer/soccer.py`    | versão final do futebol (arquivo de competição)                    | Túlio       |
@@ -27,7 +27,7 @@ Os arquivos de competição são `sumo.py`, `ctf.py` e `soccer.py`. Cada um é a
 
 ## Vídeos
 
-- Sumô: (adicionar o link)
+- Sumô: [`videos/sumo_final.mp4`](videos/sumo_final.mp4)
 - Rouba-bandeira: (adicionar o link)
 - Futebol: (adicionar o link)
 
