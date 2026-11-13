@@ -26,7 +26,8 @@ partida() {
     kill -0 "$pid" 2>/dev/null || { echo "o cenário não abriu, veja $saida"; exit 1; }
     sleep 1
   done
-  docker exec psrkit-ros /ros-entrypoint.sh rosrun psr_exercicios placar.py \
+  # a imagem do kit não tem o rosbash (rosrun): chama o script direto com python3
+  docker exec psrkit-ros /ros-entrypoint.sh python3 /ws/psr_exercicios/registro/placar.py \
     "_jogo:=$jogo" "_time0:=$t0" "_time1:=$t1" "_duracao:=${DURACAO:-300}" "_rodadas:=${RODADAS:-20}"
   ./run.sh down > /dev/null
   wait "$pid" 2>/dev/null || true
