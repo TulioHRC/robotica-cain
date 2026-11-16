@@ -13,13 +13,24 @@ argumentos() {
   if [ "$1" = "sumo" ]; then echo "robot0 robot1"; else echo "blue red"; fi
 }
 
+abrir() {
+  for k in 1 2 3; do
+    ./run.sh down > /dev/null
+    sleep $((3 * k))
+    if ./run.sh sim "$1" > /dev/null 2>&1; then return 0; fi
+    echo "o simulador não abriu (tentativa $k de 3)"
+  done
+  echo "o simulador não abriu depois de 3 tentativas, veja ./run.sh logs"
+  exit 1
+}
+
 partida() {
   local jogo="$1" t0="$2" t1="$3"
   local a0 a1
   read -r a0 a1 <<< "$(argumentos "$jogo")"
   local saida="${TMPDIR:-/tmp}/partida_${jogo}.txt"
   echo ">> $jogo: $t0 x $t1"
-  ./run.sh down > /dev/null
+  abrir "$jogo"
   ./run.sh run "$jogo" "$a0:=$t0" "$a1:=$t1" < /dev/null > "$saida" 2>&1 &
   local pid=$!
   until docker inspect -f '{{.State.Running}}' psrkit-ros 2>/dev/null | grep -q true; do

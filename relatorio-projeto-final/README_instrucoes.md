@@ -14,6 +14,9 @@ Este repositório é o kit de simulação `psr-hero-kit` da disciplina acrescido
 | `exercicios/sumo/sumo_v1.py`     | versão anterior, usada nas comparações: mira para a borda          | Ari         |
 | `exercicios/ctf/ctf.py`          | versão final do rouba-bandeira (arquivo de competição)             | Caio        |
 | `exercicios/ctf/ctf_v1.py`       | versão anterior                                                    | Caio        |
+| `exercicios/ctf/ctf_intermediaria.py` | versão intermediária, analisada nas falhas do rouba-bandeira  | Caio        |
+| `exercicios/ctf/ctf_logger.py`, `exercicios/ctf/rodar_partidas.sh` | registro detalhado usado nos testes de desenvolvimento do rouba-bandeira | Caio |
+| `exercicios/ctf/partidas/`       | registros desses testes de desenvolvimento                         | Caio        |
 | `exercicios/soccer/soccer.py`    | versão final do futebol (arquivo de competição)                    | Túlio       |
 | `exercicios/soccer/soccer_v1.py` | versão anterior                                                    | Túlio       |
 | `exercicios/registro/placar.py`  | nó que grava o placar de uma partida em CSV (só para testes)       | Cleiton     |
@@ -28,7 +31,7 @@ Os arquivos de competição são `sumo.py`, `ctf.py` e `soccer.py`. Cada um é a
 ## Vídeos
 
 - Sumô: [`videos/sumo_final.mp4`](videos/sumo_final.mp4)
-- Rouba-bandeira: (adicionar o link)
+- Rouba-bandeira: [`videos/ctf_final_x_v1.mp4`](videos/ctf_final_x_v1.mp4)
 - Futebol: (adicionar o link)
 
 ## Como jogar
@@ -45,7 +48,7 @@ No sumô, os argumentos são `robot0:=` e `robot1:=`. No rouba-bandeira e no fut
 
 ## Como reproduzir as partidas de avaliação
 
-O script `partidas.sh` faz cada partida do começo ao fim. Ele fecha o simulador, abre o jogo com os dois lados pedidos, grava o placar com `placar.py` até o fim da partida e fecha tudo de novo. No rouba-bandeira e no futebol, a partida dura 300 s de tempo simulado. No sumô, a sessão termina depois de 20 rodadas.
+O script `partidas.sh` faz cada partida do começo ao fim. Ele fecha o simulador, abre o jogo com os dois lados pedidos, grava o placar com `placar.py` até o fim da partida e fecha tudo de novo. Se o simulador não abrir, ele tenta de novo até três vezes antes de desistir. No rouba-bandeira e no futebol, a partida dura 300 s de tempo simulado. No sumô, a sessão termina depois de 20 rodadas.
 
 Uma partida, ou várias seguidas:
 
@@ -66,12 +69,24 @@ A avaliação do sumô tem 4 sessões de 20 rodadas. As do rouba-bandeira e do f
 
 Cada partida grava um arquivo `<jogo>_<time0>_x_<time1>_<data>.csv` em `exercicios/registro/logs/`, por exemplo `soccer_soccer_v1_x_soccer_20261118-201500.csv`. O nome identifica os dois lados, e é por ele que o script de tabelas sabe qual é a condição. A data e a hora vêm do relógio do container, que usa UTC.
 
+Cada linha do registro tem três colunas:
+
+| Coluna | Conteúdo |
+|---|---|
+| `t` | tempo simulado desde o início da partida (s) |
+| `estado` | a mensagem de `/game/state` em JSON: placar e, no rouba-bandeira, `tags` (quantas vezes cada robô foi segurado), `held` (quem está segurado) e `carrying` (quem carrega a bandeira inimiga) |
+| `poses` | JSON com a pose `[x, y, yaw]` de cada robô (`hero_0` a `hero_5`) e da bola (`ball`) e a posição `[x, y]` das bandeiras (`flag_blue`, `flag_red`), só do que o jogo publica |
+
+Uma linha é gravada a cada 0,2 s de tempo simulado e também sempre que o placar muda. No rouba-bandeira, também sempre que um robô é segurado, solto, pega ou perde a bandeira. As poses servem para desenhar trajetórias e mapas de ocupação.
+
 Também é possível rodar o registrador à mão, com o jogo já aberto em outro terminal:
 
 ```bash
 ./run.sh shell
-rosrun psr_exercicios placar.py _jogo:=soccer _time0:=soccer.py _time1:=none
+python3 /ws/psr_exercicios/registro/placar.py _jogo:=soccer _time0:=soccer.py _time1:=none
 ```
+
+A imagem ROS do kit não tem o `rosrun`, por isso o registrador é chamado direto com `python3`.
 
 Os parâmetros `_duracao:=` (em segundos) e `_rodadas:=` mudam o fim da partida. No `partidas.sh`, as variáveis de ambiente `DURACAO` e `RODADAS` fazem o mesmo.
 
